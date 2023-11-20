@@ -1,0 +1,87 @@
+/* ConversationCard.module.css */
+
+.conversationCard {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background: #f7f7f7;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cardContent {
+    padding: 8px;
+    white-space: pre-line; /* This will respect newline characters in text */
+  }
+  
+  .cardFooter {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center; 
+    padding: 8px;
+    background: #f7f7f7;
+    border-top: 1px solid #ddd;
+  }
+  .userName {
+    font-weight: bold;
+  }
+  
+  .actionButtons {
+    display: flex; /* Aligns buttons in a row */
+    gap: 8px; /* Spacing between buttons */
+  }
+  
+  .actionButtons button {
+    padding: 6px 12px; /* Adjust padding to control button size */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the buttons */
+    background-color: #007bff; /* A blue background color */
+    color: white; /* White text color */
+    cursor: pointer; /* Changes cursor to indicate button is clickable */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+  }
+  
+  .actionButtons button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .actionButtons button.okButton {
+    background-color: #28a745; /* Green background for OK button */
+  }
+  
+  .actionButtons button.okButton:hover {
+    background-color: #218838; /* Darker green on hover */
+  }
+  
+  .actionButtons button.markButton {
+    background-color: #ffc107; /* Yellow background for Mark button */
+  }
+  
+  .actionButtons button.markButton:hover {
+    background-color: #e0a800; /* Darker yellow on hover */
+  }
+
+  .tagContainer {
+    display: flex; /* Or inline-flex depending on your design */
+    flex-wrap: wrap; /* Allows tags to wrap onto the next line */
+    gap: 4px; /* Space between tags */
+    margin-right: auto; /* Pushes the expand button to the right */
+  }
+  
+  .tag {
+    background-color: #eef; /* Light blue background, change as needed */
+    border-radius: 4px; /* Rounded corners for tags */
+    border: 1px solid #ccc; /* Border around tags */
+    padding: 2px 6px; /* Padding inside the tag */
+    font-size: 0.75rem; /* Smaller font size for tags */
+    white-space: nowrap; /* Prevents tags from breaking onto multiple lines */
+  }
