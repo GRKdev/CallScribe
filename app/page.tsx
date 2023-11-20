@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import ConversationCard from '@/components/ui/conversation';
 import { ConversationType } from '../types/conversation';
+import { ModeToggle } from "@/components/ui/toggle";
 
 const HomePage: React.FC = () => {
   const [allConversations, setAllConversations] = useState<ConversationType[]>([]);
@@ -46,6 +47,9 @@ const HomePage: React.FC = () => {
 
   return (
     <div className='container'>
+      <div className='flex justify-between items-center'>
+        <ModeToggle />
+      </div>
       <div className='flex justify-between pt-5 pb-4 items-center'>
         <div className="searchContainer">
           <input
@@ -57,7 +61,11 @@ const HomePage: React.FC = () => {
         </div>
         <div className="filterButtons">
           {['24h', '7d', '1m', '3m', 'all'].map((filter) => (
-            <button key={filter} onClick={() => handleFilterChange(filter)}>
+            <button
+              key={filter}
+              onClick={() => handleFilterChange(filter)}
+              className={timeFilter === filter ? 'activeFilter' : ''}
+            >
               {filter}
             </button>
           ))}

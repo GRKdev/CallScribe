@@ -1,11 +1,11 @@
 /* ConversationCard.module.css */
 
 .conversationCard {
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     margin: 16px;
     overflow: hidden;
-    background: #fff;
+    background: var(--card);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
@@ -14,22 +14,51 @@
     justify-content: space-between;
     align-items: center;
     padding: 8px;
-    background: #f7f7f7;
-    border-bottom: 1px solid #ddd;
+    background: var(--header-bg); 
+    color: var(--popover-foreground);
+    border-bottom: 1px solid var(--border);
   }
   
   .cardContent {
     padding: 8px;
-    white-space: pre-line; /* This will respect newline characters in text */
+    background: var(--background);
+    color: var(--foreground);
+    white-space: pre-line;
   }
   
   .cardFooter {
     display: flex;
     justify-content: flex-end;
-    align-items: center; 
+    align-items: center;
     padding: 8px;
-    background: #f7f7f7;
-    border-top: 1px solid #ddd;
+    background: var(--footer-bg);
+    border-top: 1px solid var(--border);
+  }
+  
+  .userName {
+    font-weight: bold;
+    color: var(--card-foreground);
+  }
+  
+  .actionButtons {
+    display: flex;
+    justify-content: center; /* Center the buttons horizontally */
+    align-items: center; /* Center the buttons vertically (if needed) */
+    gap: 8px;
+  }
+  
+  .actionButtons button {
+    padding: 6px 12px; 
+    border: none; 
+    border-radius: var(--radius); 
+    background-color: var(--primary); 
+    color: var(--primary-foreground); 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+  }
+  
+  .actionButtons button:hover {
+    background-color: var(--primary-dark); /* Darker primary color on hover */
   }
   .userName {
     font-weight: bold;
@@ -53,22 +82,6 @@
   .actionButtons button:hover {
     background-color: #0056b3; /* Darker blue on hover */
   }
-  
-  .actionButtons button.okButton {
-    background-color: #28a745; /* Green background for OK button */
-  }
-  
-  .actionButtons button.okButton:hover {
-    background-color: #218838; /* Darker green on hover */
-  }
-  
-  .actionButtons button.markButton {
-    background-color: #ffc107; /* Yellow background for Mark button */
-  }
-  
-  .actionButtons button.markButton:hover {
-    background-color: #e0a800; /* Darker yellow on hover */
-  }
 
   .tagContainer {
     display: flex; /* Or inline-flex depending on your design */
@@ -78,10 +91,21 @@
   }
   
   .tag {
-    background-color: #eef; /* Light blue background, change as needed */
+    background-color: var(--tag-bg); /* Using custom property for the background color */
     border-radius: 4px; /* Rounded corners for tags */
-    border: 1px solid #ccc; /* Border around tags */
     padding: 2px 6px; /* Padding inside the tag */
     font-size: 0.75rem; /* Smaller font size for tags */
     white-space: nowrap; /* Prevents tags from breaking onto multiple lines */
+  }
+
+  .speaker0 {
+    background-color: var(--speaker0-bg);
+    color: var(--speaker0-foreground);
+    /* ... other styling ... */
+  }
+  
+  .speaker1 {
+    background-color: var(--speaker1-bg);
+    color: var(--speaker1-foreground);
+    /* ... other styling ... */
   }
