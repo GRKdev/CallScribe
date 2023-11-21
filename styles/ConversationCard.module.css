@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px;
+    padding: 6px;
     background: var(--header-bg); 
     color: var(--popover-foreground);
     border-bottom: 1px solid var(--border);
@@ -30,20 +30,37 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    padding: 8px;
+    padding: 2px;
     background: var(--footer-bg);
     border-top: 1px solid var(--border);
   }
   
-  .userName {
-    font-weight: bold;
-    color: var(--card-foreground);
+  .leftSide {
+    display: flex;
+    align-items: center;
   }
   
+  .rightSide {
+    display: flex;
+    align-items: center;
+  }
+
+  .expandButton {
+    padding-right: 4px;
+  }
+  
+  .userName {
+    margin-left: 4px; 
+  }
+  
+  .userRating {
+    margin-left: 4px; 
+  }
+
   .actionButtons {
     display: flex;
-    justify-content: center; /* Center the buttons horizontally */
-    align-items: center; /* Center the buttons vertically (if needed) */
+    justify-content: center; 
+    align-items: center; 
     gap: 8px;
   }
   
@@ -58,54 +75,59 @@
   }
   
   .actionButtons button:hover {
-    background-color: var(--primary-dark); /* Darker primary color on hover */
+    background-color: var(--primary-dark); 
   }
   .userName {
     font-weight: bold;
   }
   
   .actionButtons {
-    display: flex; /* Aligns buttons in a row */
-    gap: 8px; /* Spacing between buttons */
+    display: flex; 
+    gap: 8px; 
   }
   
   .actionButtons button {
-    padding: 6px 12px; /* Adjust padding to control button size */
-    border: none; /* Remove default border */
-    border-radius: 4px; /* Rounded corners for the buttons */
-    background-color: #007bff; /* A blue background color */
-    color: white; /* White text color */
-    cursor: pointer; /* Changes cursor to indicate button is clickable */
-    transition: background-color 0.3s ease; /* Smooth background color transition */
+    padding: 6px 12px; 
+    border: none;
+    border-radius: 4px; 
+    background-color: #007bff; 
+    color: white; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
   }
   
   .actionButtons button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #0056b3; 
   }
 
   .tagContainer {
-    display: flex; /* Or inline-flex depending on your design */
-    flex-wrap: wrap; /* Allows tags to wrap onto the next line */
-    gap: 4px; /* Space between tags */
-    margin-right: auto; /* Pushes the expand button to the right */
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 4px; 
+    margin-right: auto; 
+    margin-left: 8px;
   }
   
   .tag {
-    background-color: var(--tag-bg); /* Using custom property for the background color */
-    border-radius: 4px; /* Rounded corners for tags */
-    padding: 2px 6px; /* Padding inside the tag */
-    font-size: 0.75rem; /* Smaller font size for tags */
-    white-space: nowrap; /* Prevents tags from breaking onto multiple lines */
+    background-color: var(--tag-bg); 
+    border-radius: 4px; 
+    padding: 2px 6px;
+    font-size: 0.75rem;
+    white-space: nowrap; 
   }
 
+  .bold {
+    font-weight: bold;
+  }
+  
+ 
   .speaker0 {
     background-color: var(--speaker0-bg);
     color: var(--speaker0-foreground);
-    /* ... other styling ... */
   }
   
   .speaker1 {
     background-color: var(--speaker1-bg);
     color: var(--speaker1-foreground);
-    /* ... other styling ... */
+
   }
