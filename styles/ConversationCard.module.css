@@ -118,9 +118,15 @@
 
   .bold {
     font-weight: bold;
+    padding-left: 4px;
   }
   
- 
+  .dialogueText {
+    padding-left: 4px;
+    padding-right: 10px;
+    padding-bottom: 4px;
+  }
+  
   .speaker0 {
     background-color: var(--speaker0-bg);
     color: var(--speaker0-foreground);
@@ -131,3 +137,23 @@
     color: var(--speaker1-foreground);
 
   }
+
+  .speakerInfoContainer {
+    display: flex;
+    justify-content: space-around; /* Space around items */
+    align-items: center;
+    border: 2px solid var(--border);
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 8px; 
+    background-color: var(--speaker1-bg);
+  }
+  .speakerInfo {
+    margin-right: 0px; /* Adjust as needed for slight right shift */
+  }
+
+  .dialogueBox {
+    border: 2px solid var(--border); 
+    border-radius: 4px; 
+  }
+  

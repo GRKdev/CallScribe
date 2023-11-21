@@ -1,5 +1,6 @@
 import React from 'react';
 import { ModeToggle } from "@/components/ui/toggle";
+import { CalendarForm } from '@/hooks/calendar';
 
 interface NavbarProps {
     searchTerm: string;
@@ -16,16 +17,18 @@ const Navbar: React.FC<NavbarProps> = ({
 }) => {
     return (
         <nav className="navbar">
-            <ModeToggle />
-            <div className="searchContainer">
-                <input
-                    type="text"
-                    value={searchTerm}
-                    onChange={(e) => onSearchChange(e.target.value)}
-                    placeholder="Search conversations"
-                />
+
+            <div className="p-4">
+                <div className="searchContainer">
+                    <input
+                        type="text"
+                        value={searchTerm}
+                        onChange={(e) => onSearchChange(e.target.value)}
+                        placeholder="Search conversations"
+                    />
+                </div>
             </div>
-            <div className="filterButtons">
+            <div className="filterButtons justify-between px-8 ">
                 {['24h', '7d', '1m', '3m', 'all'].map((filter) => (
                     <button
                         key={filter}
@@ -35,6 +38,12 @@ const Navbar: React.FC<NavbarProps> = ({
                         {filter}
                     </button>
                 ))}
+            </div>
+            <div className="pt-4 px-4">
+                <CalendarForm />
+            </div>
+            <div className="p-8">
+                <ModeToggle />
             </div>
         </nav>
     );

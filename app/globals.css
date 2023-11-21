@@ -117,7 +117,7 @@
 
 .filterButtons {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .filterButtons button {
@@ -127,6 +127,8 @@
   cursor: pointer;
   transition: background-color 0.2s;
   border-radius: 8px;
+  font-size: 10px;
+  text-transform:uppercase
 }
 
 .filterButtons button:hover {
