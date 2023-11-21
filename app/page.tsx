@@ -16,7 +16,7 @@ const HomePage: React.FC = () => {
   const allConversations = useFetchConversations(timeFilter, customDate);
   const filteredConversations = useSearchFilter(debouncedSearchTerm, allConversations);
 
-  const handleCustomDateChange = (date) => {
+  const handleCustomDateChange = (date: Date) => {
     setTimeFilter('custom');
     setCustomDate(date);
   };
@@ -28,7 +28,7 @@ const HomePage: React.FC = () => {
         onSearchChange={setSearchTerm}
         timeFilter={timeFilter}
         onTimeFilterChange={setTimeFilter}
-        onCustomDateChange={handleCustomDateChange}
+        onDateSelect={handleCustomDateChange}
       />
       {filteredConversations.map((conversation: ConversationType) => (
         <ConversationCard key={conversation.conversation_id} conversation={conversation} />

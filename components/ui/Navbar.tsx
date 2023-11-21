@@ -2,18 +2,19 @@ import React from 'react';
 import { ModeToggle } from "@/components/ui/toggle";
 import { CalendarForm } from '@/hooks/calendar';
 
-interface NavbarProps {
+type NavbarProps = {
     searchTerm: string;
-    onSearchChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onSearchChange: (value: string) => void;
     timeFilter: string;
-    onTimeFilterChange: (newFilter: string) => void;
-}
-
+    onTimeFilterChange: (filter: string) => void;
+    onDateSelect: (date: Date) => void; // Add this prop for the calendar form
+};
 const Navbar: React.FC<NavbarProps> = ({
     searchTerm,
     onSearchChange,
     timeFilter,
     onTimeFilterChange,
+    onDateSelect // Include onDateSelect in your props
 }) => {
     return (
         <nav className="navbar">
@@ -28,7 +29,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     />
                 </div>
             </div>
-            <div className="filterButtons justify-between px-8 ">
+            <div className="filterButtons justify-between px-2">
                 {['24h', '7d', '1m', '3m', 'all'].map((filter) => (
                     <button
                         key={filter}
@@ -38,9 +39,9 @@ const Navbar: React.FC<NavbarProps> = ({
                         {filter}
                     </button>
                 ))}
+                <CalendarForm onDateSelect={onDateSelect} />
             </div>
             <div className="pt-4 px-4">
-                <CalendarForm />
             </div>
             <div className="p-8">
                 <ModeToggle />
