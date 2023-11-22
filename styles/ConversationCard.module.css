@@ -1,12 +1,9 @@
-/* ConversationCard.module.css */
-
 .conversationCard {
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: var(--radius);
     margin: 16px;
     overflow: hidden;
     background: var(--card);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
   
   .cardHeader {

@@ -22,18 +22,18 @@ const HomePage: React.FC = () => {
   const [customDate, setCustomDate] = useState<Date | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+  const [isNavShrunk, setIsNavShrunk] = useState(false);
+
 
   const [allConversations] = useFetchConversations(timeFilter, customDate);
   const filteredConversations = useSearchFilter(debouncedSearchTerm, allConversations);
 
-  // State to keep track of the sentiment counts for the filtered conversations
   const [filteredSentimentCounts, setFilteredSentimentCounts] = useState<SentimentCounts>({
     positive: 0,
     negative: 0,
     neutral: 0,
   });
 
-  // Effect to update sentiment counts whenever the filtered conversations change
   useEffect(() => {
     setFilteredSentimentCounts(calculateSentimentCounts(filteredConversations));
   }, [filteredConversations]);
@@ -42,20 +42,26 @@ const HomePage: React.FC = () => {
     setTimeFilter('custom');
     setCustomDate(date);
   };
+  const toggleNavbar = () => setIsNavShrunk(!isNavShrunk);
 
   return (
-    <div className='container'>
+    <div className={`container ${isNavShrunk ? 'shrunk' : ''}`}>
       <Navbar
         searchTerm={searchTerm}
         onSearchChange={setSearchTerm}
         timeFilter={timeFilter}
         onTimeFilterChange={setTimeFilter}
         onDateSelect={handleCustomDateChange}
-        sentimentCounts={filteredSentimentCounts} // Pass the filtered sentiment counts here
+        sentimentCounts={filteredSentimentCounts}
+        isNavShrunk={isNavShrunk}
+        onToggleNav={toggleNavbar}
       />
-      {filteredConversations.map((conversation: ConversationType) => (
-        <ConversationCard key={conversation.conversation_id} conversation={conversation} />
-      ))}
+
+      <div className="conversation-cards">
+        {filteredConversations.map((conversation: ConversationType) => (
+          <ConversationCard key={conversation.conversation_id} conversation={conversation} />
+        ))}
+      </div>
     </div>
   );
 };

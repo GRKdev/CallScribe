@@ -1,4 +1,3 @@
-// SentimentChart.tsx
 'use client'
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
@@ -11,9 +10,8 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { SentimentCounts } from '@/types/conversation'; // Adjust the import path
+import { SentimentCounts } from '@/types/conversation';
 
-// Register the components for Chart.js
 ChartJS.register(
     CategoryScale,
     LinearScale,
@@ -32,17 +30,17 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentimentCounts }) => {
         labels: ['Positive', 'Negative', 'Neutral'],
         datasets: [
             {
-                label: "Sentiment",
+                label: "",
                 data: [sentimentCounts.positive, sentimentCounts.negative, sentimentCounts.neutral],
                 backgroundColor: [
-                    'rgba(75, 192, 192, 0.5)',
+                    'rgba(53, 162, 235, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
-                    'rgba(255, 206, 86, 0.5)',
+                    'rgba(255, 205, 86, 0.5)',
                 ],
                 borderColor: [
-                    'rgba(75, 192, 192, 1)',
+                    'rgba(53, 162, 235, 1)',
                     'rgba(255, 99, 132, 1)',
-                    'rgba(255, 206, 86, 1)',
+                    'rgba(255, 205, 86, 1)',
                 ],
                 borderWidth: 1,
             },
@@ -53,12 +51,31 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentimentCounts }) => {
         scales: {
             y: {
                 beginAtZero: true,
+                ticks: {
+                    stepSize: 1,
+                    callback: function (value: number) {
+                        if (value % 1 === 0) {
+                            return value;
+                        }
+                    },
+                },
             },
         },
         maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: false,
+            },
+            tooltip: {
+                enabled: true,
+                callbacks: {
+                    title: () => '',
+                }
+            }
+        }
     };
 
-    return <Bar data={data} options={options} />;
+    return <Bar data={data} options={options as any} />;
 };
 
 export default SentimentChart;

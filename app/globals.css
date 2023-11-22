@@ -35,28 +35,30 @@
     --speaker0-foreground: #000;
     --speaker1-bg: #f7f7f7;
     --speaker1-foreground: #000;
+    --navbar-width: 285px;
+    --navbar-shrunk-width: 24px;
   }
  
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: #4d4c4c;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --destructive-foreground: 0 0% 98%;
+    --border: #4c4d4d;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
     --radius: 0.5rem;
     --header-bg: #333; 
     --footer-bg: #333;
@@ -69,6 +71,8 @@
     --speaker0-foreground: #fff;
     --speaker1-bg: #444; 
     --speaker1-foreground: #fff; 
+    --navbar-width: 285px;
+    --navbar-shrunk-width: 24px;
   }
 }
 @layer base {
@@ -80,39 +84,73 @@
   }
 }
 
-.container {
-  max-width: 900px; 
-  margin: 0 auto; 
-  padding: 5px 20px; 
-}
 .navbar {
-  position: fixed; /* Fixed position to the left side */
-  top: 0; /* Align to the top */
-  left: 0; /* Align to the left */
-  width: 300px; /* Adjust the width as needed */
-  height: 100vh; /* Full height */
-
-}
-.filtersContainer {
-  display: flex;
-  justify-content: space-between; 
-  margin-bottom: 16px; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--navbar-width);
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--header-bg);
+  transition: width 0.3s;
 }
 
-.searchContainer {
-  max-width: 500px;
-  padding-left: 8px;
-  border: 1px solid var(--search-border);
-  border-radius: 8px;
+.navbar.shrunk {
+  width: var(--navbar-shrunk-width);
 }
+
+.container {
+  transition: margin-left 0.3s;
+}
+
+.container.shrunk {
+  margin-left: var(--navbar-shrunk-width);
+}
+
+.conversation-cards {
+  margin-top: 1rem;
+  padding: 0 1rem;
+  margin-left: var(--navbar-width);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+    height: auto;
+    top: 0;
+    position: fixed;
+    overflow-x: auto;
+    background-color: var(--header-bg);
+
+  }
+
+  .navbar.shrunk {
+    width: 100%;
+  }
+
+  .container,
+  .container.shrunk {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .conversation-cards {
+    padding: 0 0%;
+    margin-left: 0;
+  }
+
+  .chartBox {
+    height: 100px;
+  }
+}
+
 
 .searchContainer input {
-  flex-grow: 1;
-  margin-right: 8px;
-  padding: 8px;
-  border: none;
-  outline: none;
-  background-color: transparent;
+  width: 100%;
+  padding: 4px;
+  border: 1px solid var(--search-border);
+  border-radius: 8px;
+  outline: gray;
 }
 
 .filterButtons {
@@ -136,4 +174,11 @@
 }
 .filterButtons .activeFilter {
   background-color: var(--filter-button-hover-bg);
+}
+
+.chartBox {
+  border: 2px solid var(--border);; 
+  border-radius: 4px; 
+  margin: 8px;
+  margin-top: 16px;
 }

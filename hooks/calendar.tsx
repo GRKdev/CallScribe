@@ -19,12 +19,10 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover"
 
-// Define a type for the props
 interface CalendarFormProps {
     onDateSelect: (date: Date | null) => void;
 }
 
-// Define a type for the form's data shape
 interface FormData {
     dob: Date | null;
 }
@@ -65,10 +63,10 @@ export function CalendarForm({ onDateSelect }: CalendarFormProps) {
                                 <PopoverContent className="w-auto p-0" align="start">
                                     <Calendar
                                         mode="single"
-                                        selected={field.value || undefined} // Pass undefined instead of null
+                                        selected={field.value || undefined}
                                         onSelect={(date: Date | undefined) => {
                                             setValue('dob', date);
-                                            handleSubmit(onSubmit)(); // Triggers form submission
+                                            handleSubmit(onSubmit)(); //
                                         }}
                                         disabled={(date) =>
                                             date > new Date() || date < new Date("1900-01-01")
