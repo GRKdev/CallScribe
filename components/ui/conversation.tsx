@@ -67,7 +67,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation }) => 
           )}
         </span>
         <div className={styles.tagContainer}>
-          {conversation.tags.map((tag) => (
+          {conversation.tags && conversation.tags.map((tag) => (
             <span key={tag} className={styles.tag}>
               {tag}
             </span>

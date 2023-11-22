@@ -1,10 +1,18 @@
 'use client'
-
 import { useState, useEffect } from 'react';
-import { ConversationType } from '@/types/conversation';
+import { ConversationType, SentimentCounts } from '@/types/conversation';
+import { calculateSentimentCounts } from '@/hooks/sentimentCount';
 
-export const useFetchConversations = (timeFilter: string, customDate: Date | null): ConversationType[] => {
+export const useFetchConversations = (
+  timeFilter: string,
+  customDate: Date | null
+): [ConversationType[], SentimentCounts] => {
   const [conversations, setConversations] = useState<ConversationType[]>([]);
+  const [sentimentCounts, setSentimentCounts] = useState<SentimentCounts>({
+    positive: 0,
+    negative: 0,
+    neutral: 0,
+  });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +22,6 @@ export const useFetchConversations = (timeFilter: string, customDate: Date | nul
         const adjustedDate = new Date(customDate);
         adjustedDate.setDate(adjustedDate.getDate() + 1);
         const correctedDateStr = adjustedDate.toISOString().split('T')[0];
-
         apiUrl += `?custom_start_date=${correctedDateStr}`;
       } else if (timeFilter !== 'all') {
         apiUrl += `?time_filter=${timeFilter}`;
@@ -26,7 +33,29 @@ export const useFetchConversations = (timeFilter: string, customDate: Date | nul
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+
+        const counts: SentimentCounts = {
+          positive: 0,
+          negative: 0,
+          neutral: 0,
+        };
+
+        data.forEach((conversation: ConversationType) => {
+          switch (conversation.sentiment) {
+            case 'Positive':
+              counts.positive += 1;
+              break;
+            case 'Negative':
+              counts.negative += 1;
+              break;
+            default:
+              counts.neutral += 1;
+              break;
+          }
+        });
+
         setConversations(data);
+        setSentimentCounts(calculateSentimentCounts(data));
       } catch (error) {
         console.error('Failed to fetch conversations:', error);
       }
@@ -35,7 +64,7 @@ export const useFetchConversations = (timeFilter: string, customDate: Date | nul
     fetchData();
   }, [timeFilter, customDate]);
 
-  return conversations;
+  return [conversations, sentimentCounts];
 };
 
 export default useFetchConversations;

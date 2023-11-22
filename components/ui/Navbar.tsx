@@ -1,6 +1,7 @@
 import React from 'react';
 import { ModeToggle } from "@/components/ui/toggle";
 import { CalendarForm } from '@/hooks/calendar';
+import SentimentChart from "@/hooks/SentimentChart";
 
 type NavbarProps = {
     searchTerm: string;
@@ -9,12 +10,14 @@ type NavbarProps = {
     onTimeFilterChange: (filter: string) => void;
     onDateSelect: (date: Date) => void; // Add this prop for the calendar form
 };
-const Navbar: React.FC<NavbarProps> = ({
+const Navbar: React.FC<NavbarProps & { sentimentCounts: SentimentCounts }> = ({
     searchTerm,
     onSearchChange,
     timeFilter,
     onTimeFilterChange,
-    onDateSelect // Include onDateSelect in your props
+    onDateSelect,
+    sentimentCounts,
+
 }) => {
     return (
         <nav className="navbar">
@@ -41,8 +44,10 @@ const Navbar: React.FC<NavbarProps> = ({
                 ))}
                 <CalendarForm onDateSelect={onDateSelect} />
             </div>
-            <div className="pt-4 px-4">
+            <div className="sentiment-chart-container p-4" style={{ height: '200px' }}>
+                <SentimentChart sentimentCounts={sentimentCounts} />
             </div>
+
             <div className="p-8">
                 <ModeToggle />
             </div>
@@ -51,3 +56,5 @@ const Navbar: React.FC<NavbarProps> = ({
 };
 
 export default Navbar;
+
+// ok works with changing to   const [allConversations, sentimentCounts] = useFetchConversations(timeFilter, customDate);

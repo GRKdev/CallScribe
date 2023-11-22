@@ -5,7 +5,7 @@ export type SpeakerType = {
   
   export type ConversationType = {
     summary: string;
-    sentiment: string;
+    sentiment: 'Positive' | 'Negative' | 'Neutral';
     tags: string[];
     speaker_0: SpeakerType;
     speaker_1: SpeakerType;
@@ -17,3 +17,8 @@ export type SpeakerType = {
     status: string;
   };
   
+  export type SentimentCounts = {
+    positive: number;
+    negative: number;
+    neutral: number;
+  };
