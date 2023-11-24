@@ -15,14 +15,17 @@ interface ConversationCardProps {
 const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onStatusUpdate }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentStatus, setCurrentStatus] = useState(conversation.status);
+  const summaryClass = conversation.status === 'OK' ? styles.greyText : '';
+  const userNameClass = conversation.status === 'OK' ? styles.userNameOk : styles.userName;
+
 
   const handleExpandClick = useCallback(() => {
     setIsExpanded((prevState) => !prevState);
   }, []);
 
-  // Update the status in the state as well as inform the parent component
   const handleStatusUpdate = useCallback((newStatus: string) => {
     setCurrentStatus(newStatus);
+    setIsExpanded(false);
     onStatusUpdate(conversation.conversation_id, newStatus);
   }, [conversation.conversation_id, onStatusUpdate]);
 
@@ -37,7 +40,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
           ) : (
             <BookmarkX width={18} color='red' />
           )}
-          <span className={styles.userName}>{conversation.user}</span>
+          <span className={userNameClass}>{conversation.user}</span>
         </div>
 
         <div className={styles.rightSide}>
@@ -62,7 +65,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
             />
           </>
         ) : (
-          <span>{conversation.summary}</span>
+          <span className={summaryClass}>{conversation.summary}</span>
         )}
       </div>
 

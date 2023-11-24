@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from '@/styles/ConversationCard.module.css';
+import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
+import { Button } from "@/components/ui/button"
 
 interface ConversationActionsProps {
   conversationId: string;
@@ -34,9 +36,10 @@ const ConversationActions: React.FC<ConversationActionsProps> = ({ conversationI
   };
 
   return (
-    <div className={styles.actionButtons}>
-      <button onClick={() => updateStatus('OK')}>Ok</button>
-      <button onClick={() => updateStatus('Marked')}>Mark</button>
+    <div className={styles.buttonContainer}>
+      <Button variant="secondary" onClick={() => updateStatus('OK')}><BookmarkCheck width={18} color='green' />Ok</Button>
+      <Button variant="secondary" onClick={() => updateStatus('Marked')}><BookmarkX width={18} color='red' />Mark</Button>
+      <Button variant="secondary" onClick={() => updateStatus('Not Read')}><Bookmark width={18} />Not Read</Button>
     </div>
   );
 };

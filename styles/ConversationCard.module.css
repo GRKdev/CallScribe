@@ -48,8 +48,16 @@
   
   .userName {
     margin-left: 4px; 
+    font-weight: bold;
+
   }
-  
+
+  .userNameOk {
+    margin-left: 4px; 
+    color: gray;
+    font-weight: bold;
+    font-style: italic;
+  }
   .userRating {
     margin-left: 4px; 
   }
@@ -74,16 +82,18 @@
   .actionButtons button:hover {
     background-color: var(--primary-dark); 
   }
-  .userName {
-    font-weight: bold;
+
+  .buttonContainer {
+    display: flex;
+    justify-content: center; /* Aligns items to the right */
+    gap: 10px; /* Adjust the gap size as needed */
   }
-  
-  .actionButtons {
+  /* .actionButtons {
     display: flex; 
     gap: 8px; 
-  }
+  } */
   
-  .actionButtons button {
+  /* .actionButtons button {
     padding: 6px 12px; 
     border: none;
     border-radius: 4px; 
@@ -95,7 +105,7 @@
   
   .actionButtons button:hover {
     background-color: #0056b3; 
-  }
+  } */
 
   .tagContainer {
     display: flex; 
@@ -154,3 +164,7 @@
     border-radius: 4px; 
   }
   
+.greyText {
+  color: grey;
+  font-style: italic;
+}
