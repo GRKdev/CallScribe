@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from '@/components/ui/Navbar';
 import ConversationCard from '@/components/ui/conversation';
 import useFetchConversations from '@/hooks/useFetchConversations';
@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [isNavShrunk, setIsNavShrunk] = useState(false);
-
+  const [updatedStatus, setUpdatedStatus] = useState<Record<string, string>>({});
 
   const [allConversations] = useFetchConversations(timeFilter, customDate);
   const filteredConversations = useSearchFilter(debouncedSearchTerm, allConversations);
@@ -42,7 +42,19 @@ const HomePage: React.FC = () => {
     setTimeFilter('custom');
     setCustomDate(date);
   };
+
   const toggleNavbar = () => setIsNavShrunk(!isNavShrunk);
+
+  const handleStatusUpdate = useCallback((conversationId: string, newStatus: string) => {
+    setUpdatedStatus(prev => ({ ...prev, [conversationId]: newStatus }));
+  }, []);
+
+  const conversationsWithStatusUpdates = allConversations.map((conv) => ({
+    ...conv,
+    status: updatedStatus[conv.conversation_id] || conv.status,
+  }));
+
+  const handleFilteredConversations = useSearchFilter(debouncedSearchTerm, conversationsWithStatusUpdates);
 
   return (
     <div className={`container ${isNavShrunk ? 'shrunk' : ''}`}>
@@ -56,10 +68,13 @@ const HomePage: React.FC = () => {
         isNavShrunk={isNavShrunk}
         onToggleNav={toggleNavbar}
       />
-
       <div className="conversation-cards">
-        {filteredConversations.map((conversation: ConversationType) => (
-          <ConversationCard key={conversation.conversation_id} conversation={conversation} />
+        {handleFilteredConversations.map((conversation) => (
+          <ConversationCard
+            key={conversation.conversation_id}
+            conversation={conversation}
+            onStatusUpdate={handleStatusUpdate}
+          />
         ))}
       </div>
     </div>

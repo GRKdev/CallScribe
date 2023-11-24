@@ -64,7 +64,7 @@ const Navbar: React.FC<NavbarProps> = ({
                     <button
                         onClick={onToggleNav}
                         style={{ float: 'right' }}
-                        className="toggle-nav-btn"
+                        className="toggle-nav-btn pr-2"
                     >
                         <ArrowLeftFromLine />
                     </button>

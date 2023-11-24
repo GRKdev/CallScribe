@@ -5,25 +5,34 @@ import styles from '@/styles/ConversationCard.module.css';
 import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
 import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
 import FormatDateTime from '@/components/ui/FormatDateTime';
+import ConversationActions from '@/hooks/ConversationActions';
 
 interface ConversationCardProps {
   conversation: ConversationType;
+  onStatusUpdate: (conversationId: string, newStatus: string) => void;
 }
 
-const ConversationCard: React.FC<ConversationCardProps> = ({ conversation }) => {
+const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onStatusUpdate }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [currentStatus, setCurrentStatus] = useState(conversation.status);
 
   const handleExpandClick = useCallback(() => {
-    setIsExpanded(prevState => !prevState);
+    setIsExpanded((prevState) => !prevState);
   }, []);
+
+  // Update the status in the state as well as inform the parent component
+  const handleStatusUpdate = useCallback((newStatus: string) => {
+    setCurrentStatus(newStatus);
+    onStatusUpdate(conversation.conversation_id, newStatus);
+  }, [conversation.conversation_id, onStatusUpdate]);
 
   return (
     <div className={styles.conversationCard}>
       <div className={styles.cardHeader}>
         <div className={styles.leftSide}>
-          {conversation.status === 'Not Read' ? (
+          {currentStatus === 'Not Read' ? (
             <Bookmark width={18} />
-          ) : conversation.status === 'Ok' ? (
+          ) : currentStatus === 'OK' ? (
             <BookmarkCheck width={18} color='green' />
           ) : (
             <BookmarkX width={18} color='red' />
@@ -33,7 +42,6 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation }) => 
 
         <div className={styles.rightSide}>
           <FormatDateTime isoString={conversation.datetime} />
-
         </div>
       </div>
 
@@ -47,15 +55,17 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation }) => 
                 speaker_1={conversation.speaker_1}
               />
             </div>
-            <div className={styles.actionButtons}>
-              <button onClick={() => console.log('Mark as OK')}>OK</button>
-              <button onClick={() => console.log('Mark as Review')}>Mark</button>
-            </div>
+            <ConversationActions
+              conversationId={conversation.conversation_id}
+              currentStatus={currentStatus}
+              onStatusUpdate={handleStatusUpdate}
+            />
           </>
         ) : (
           <span>{conversation.summary}</span>
         )}
       </div>
+
       <div className={styles.cardFooter}>
         <span className={styles.userRating}>
           {conversation.sentiment === 'Positive' ? (
@@ -68,12 +78,14 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation }) => 
         </span>
         <div className={styles.tagContainer}>
           {conversation.tags && conversation.tags.map((tag) => (
-            <span key={tag} className={styles.tag}>
-              {tag}
-            </span>
+            <span key={tag} className={styles.tag}>{tag}</span>
           ))}
         </div>
-        <button onClick={handleExpandClick} aria-label="Toggle Conversation Expansion" className={styles.expandButton}>
+        <button
+          onClick={handleExpandClick}
+          aria-label="Toggle Conversation Expansion"
+          className={styles.expandButton}
+        >
           {isExpanded ? <ArrowUpFromLine width={18} /> : <ArrowDownFromLine width={18} />}
         </button>
       </div>
