@@ -3,7 +3,8 @@ import { ModeToggle } from "@/components/ui/toggle";
 import { CalendarForm } from '@/hooks/calendar';
 import SentimentChart from "@/hooks/SentimentChart";
 import { SentimentCounts } from '@/types/conversation';
-import { ArrowRightFromLine, ArrowLeftFromLine } from 'lucide-react';
+import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
+import { Button } from "@/components/ui/button"
 
 type NavbarProps = {
     searchTerm: string;
@@ -47,17 +48,25 @@ const Navbar: React.FC<NavbarProps> = ({
                         </div>
                     </div>
                     <div className="filterButtons justify-between px-2">
-                        {['24h', '7d', '1m', '3m', 'all'].map((filter) => (
+                        {['24h', '7d', '1m', 'all'].map((filter) => (
                             <button
                                 key={filter}
                                 onClick={() => onTimeFilterChange(filter)}
-                                className={timeFilter === filter ? 'activeFilter' : ''}
+                                className={timeFilter === filter ? 'activeFilter' : '24h'}
                             >
                                 {filter}
                             </button>
                         ))}
                         <CalendarForm onDateSelect={onDateSelect} />
                     </div>
+
+                    <div className="filterButtons justify-between px-11 pt-2">
+                        <Button variant="secondary" onClick={() => updateStatus('OK')} className={'activeFilter'}>All</Button>
+                        <Button variant="secondary" onClick={() => updateStatus('Marked')}><BookmarkX width={18} color='red' /></Button>
+                        <Button variant="secondary" onClick={() => updateStatus('Not Read')}><Bookmark width={18} /></Button>
+                        <Button variant="secondary" onClick={() => updateStatus('OK')}><BookmarkCheck width={18} color='green' /></Button>
+                    </div>
+
                     <div className="chartBox p-1" style={{ height: '200px' }}>
                         <SentimentChart sentimentCounts={sentimentCounts} />
                     </div>

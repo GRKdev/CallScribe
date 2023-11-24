@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/styles/ConversationCard.module.css';
-import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
+import { Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 
 interface ConversationActionsProps {
