@@ -37,6 +37,9 @@
     --speaker1-foreground: #000;
     --navbar-width: 285px;
     --navbar-shrunk-width: 24px;
+    --icon-fill-light: #000000;
+    --icon-fill-dark: #ffffff;
+    --icon-fill: var(--icon-stroke-light)
   }
  
   .dark {
@@ -73,6 +76,8 @@
     --speaker1-foreground: #fff; 
     --navbar-width: 285px;
     --navbar-shrunk-width: 24px;
+    --icon-fill: var(--icon-fill-dark);
+
   }
 }
 @layer base {
@@ -113,7 +118,7 @@
   margin-left: var(--navbar-width);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 790px) {
   .navbar {
     width: 100%;
     height: auto;
@@ -140,7 +145,7 @@
   }
 
   .chartBox {
-    height: 100px;
+    display: none;
   }
 }
 
@@ -148,7 +153,7 @@
 .searchContainer input {
   width: 100%;
   padding: 4px;
-  border: 1px solid var(--search-border);
+  border: 2px solid var(--search-border);
   border-radius: 8px;
   outline: gray;
 }
@@ -181,5 +186,44 @@
   border: 2px solid var(--border);; 
   border-radius: 4px; 
   margin: 8px;
-  margin-top: 16px;
+  margin-top: 8px;
+  display: flex; 
+  justify-content: center; 
+}
+
+.tagConversationContainer {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 4px; 
+  justify-content: center; 
+}
+
+.tagConversation {
+  background-color: var(--tag-bg); 
+  border-color: var(--search-border);
+  border-radius: 4px; 
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  white-space: nowrap; 
+}
+
+.not-read-count {
+  font-weight: bold;
+
+}
+
+.marked-count {
+  color: red;
+  font-weight: bold;
+
+}
+
+.ok-count {
+  color: green;
+  font-weight: bold;
+
+}
+
+#logo-icon path {
+  fill: var(--icon-fill);
 }

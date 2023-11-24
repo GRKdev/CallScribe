@@ -2,9 +2,10 @@ import React from 'react';
 import { ModeToggle } from "@/components/ui/toggle";
 import { CalendarForm } from '@/hooks/calendar';
 import SentimentChart from "@/hooks/SentimentChart";
-import { SentimentCounts } from '@/types/conversation';
+import { SentimentCounts, ConversationCounts } from '@/types/conversation';
 import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
 import { Button } from "@/components/ui/button"
+import CallLogo from "@/components/ui/ccLogo"
 
 type NavbarProps = {
     searchTerm: string;
@@ -15,6 +16,8 @@ type NavbarProps = {
     sentimentCounts: SentimentCounts;
     isNavShrunk: boolean;
     onToggleNav: () => void;
+    filterStatus: (status: string) => void;
+    conversationCounts: ConversationCounts;
 };
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -26,18 +29,23 @@ const Navbar: React.FC<NavbarProps> = ({
     sentimentCounts,
     isNavShrunk,
     onToggleNav,
+    conversationCounts
 }) => {
     return (
         <nav className={`navbar ${isNavShrunk ? 'shrunk' : ''}`}>
             {isNavShrunk ? (
-                <button onClick={onToggleNav}><ArrowRightFromLine /></button>
+                <button style={{ justifyContent: 'center' }} onClick={onToggleNav}><ArrowRightFromLine /></button>
             ) : (
-                <>
+                <>  <div className="flex justify-center items-center p-1 gap-2">
+                    <h1 className="text-center text-2xl font-bold">CallScribe Center</h1>
+                    <div className="logo-icon">
+                        <CallLogo />
+                    </div>
+                </div>
+
                     <div className="p-4">
                         <div className="searchContainer flex justify-between">
-                            <div className="pr-2">
-                                <ModeToggle />
-                            </div>
+
                             <input
                                 className="pl-2"
                                 type="text"
@@ -52,7 +60,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             <button
                                 key={filter}
                                 onClick={() => onTimeFilterChange(filter)}
-                                className={timeFilter === filter ? 'activeFilter' : '24h'}
+                                className={timeFilter === filter ? 'activeFilter' : ''}
                             >
                                 {filter}
                             </button>
@@ -61,22 +69,32 @@ const Navbar: React.FC<NavbarProps> = ({
                     </div>
 
                     <div className="filterButtons justify-between px-11 pt-2">
-                        <Button variant="secondary" onClick={() => updateStatus('OK')} className={'activeFilter'}>All</Button>
-                        <Button variant="secondary" onClick={() => updateStatus('Marked')}><BookmarkX width={18} color='red' /></Button>
-                        <Button variant="secondary" onClick={() => updateStatus('Not Read')}><Bookmark width={18} /></Button>
-                        <Button variant="secondary" onClick={() => updateStatus('OK')}><BookmarkCheck width={18} color='green' /></Button>
+                        <Button variant="secondary" onClick={() => filterStatus('OK')}>All</Button>
+                        <Button variant="secondary" onClick={() => filterStatus('Marked')}><BookmarkX width={18} color='red' /></Button>
+                        <Button variant="secondary" onClick={() => filterStatus('Not Read')}><Bookmark width={18} /></Button>
+                        <Button variant="secondary" onClick={() => filterStatus('OK')}><BookmarkCheck width={18} color='green' /></Button>
                     </div>
+                    <ul className="tagConversationContainer p-2">
+                        <li className='tagConversation'>Not Read: <span className="not-read-count">{conversationCounts.not_read}</span></li>
+                        <li className='tagConversation'>Marked: <span className="marked-count">{conversationCounts.marked}</span></li>
+                        <li className='tagConversation'>OK: <span className="ok-count">{conversationCounts.ok}</span></li>
+                    </ul>
 
-                    <div className="chartBox p-1" style={{ height: '200px' }}>
+                    <div className="hidden md:flex chartBox" style={{ height: '200px' }}>
                         <SentimentChart sentimentCounts={sentimentCounts} />
                     </div>
-                    <button
-                        onClick={onToggleNav}
-                        style={{ float: 'right' }}
-                        className="toggle-nav-btn pr-2"
-                    >
-                        <ArrowLeftFromLine />
-                    </button>
+                    <div className="tagContainer p-2">
+
+                        <ModeToggle />
+
+                        <button
+                            onClick={onToggleNav}
+                            style={{ float: 'right' }}
+                            className="toggle-nav-btn pr-2"
+                        >
+                            <ArrowLeftFromLine />
+                        </button>
+                    </div>
 
 
                 </>

@@ -22,3 +22,9 @@ export type SpeakerType = {
     negative: number;
     neutral: number;
   };
+
+  export type ConversationCounts = {
+    ok: number;
+    marked: number;
+    not_read: number;
+  };

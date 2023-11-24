@@ -6,6 +6,7 @@ import useFetchConversations from '@/hooks/useFetchConversations';
 import useSearchFilter from '@/hooks/useSearchFilter';
 import useDebounce from '@/hooks/useDebounce';
 import { ConversationType, SentimentCounts } from '@/types/conversation';
+import { calculateConversationsCounts } from '@/hooks/ConversationCount';
 
 const calculateSentimentCounts = (conversations: ConversationType[]): SentimentCounts => {
   return conversations.reduce(
@@ -27,6 +28,7 @@ const HomePage: React.FC = () => {
 
   const [allConversations] = useFetchConversations(timeFilter, customDate);
   const filteredConversations = useSearchFilter(debouncedSearchTerm, allConversations);
+  const conversationCounts = calculateConversationsCounts(filteredConversations);
 
   const [filteredSentimentCounts, setFilteredSentimentCounts] = useState<SentimentCounts>({
     positive: 0,
@@ -67,6 +69,8 @@ const HomePage: React.FC = () => {
         sentimentCounts={filteredSentimentCounts}
         isNavShrunk={isNavShrunk}
         onToggleNav={toggleNavbar}
+        conversationCounts={conversationCounts}
+        filterStatus={handleStatusUpdate}
       />
       <div className="conversation-cards">
         {handleFilteredConversations.map((conversation) => (
