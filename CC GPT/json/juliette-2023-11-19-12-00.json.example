@@ -1,0 +1,22 @@
+{
+     "summary": "Mr. Bartos calls Natalie's office urgently, leaving his cell number and a message for her to call him back.",
+     "sentiment": "Neutral",
+     "tags": [
+          "urgent",
+          "message",
+          "call back"
+     ],
+     "speaker_0": {
+          "name": "Mr. Bartos",
+          "role": "Caller"
+     },
+     "speaker_1": {
+          "name": "Receptionist",
+          "role": "Receptionist"
+     },
+     "all_text": "Speaker 0: I'm going to go ahead and get started.\n\nSpeaker 1: Mr. Bartos, I'm sorry, Natalie's in a meeting at the moment. Would you like to leave a message? Yes,\n\nSpeaker 0: could you ask her to call me back as soon as possible? It's pretty urgent.\n\nSpeaker 1: Of course. Does she have your number?\n\nSpeaker 0: She has my office number, but let me also give you my cell. It's 472-555-8901.\n\nSpeaker 1: Let me read that back to you. 472-555-8901.\n\nSpeaker 0: That's right.\n\nSpeaker 1: And could you spell your last name for me?\n\nSpeaker 0: B as in Boston, A-R-D as in dog, O-S as in September.\n\nSpeaker 1: Okay, Mr. Bartos, I'll give her the message.\n\nSpeaker_0: Thanks a lot. Bye.",
+     "user": "juliette",
+     "date": "2023-11-19",
+     "time": "12:00",
+     "file_name": "juliette-2023-11-19-12-00"
+}
