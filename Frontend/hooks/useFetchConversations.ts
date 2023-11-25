@@ -25,16 +25,17 @@ export const useFetchConversations = (
     const fetchData = async () => {
       let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/conversations`;
 
-      if (timeFilter !== 'all') {
-        apiUrl += `?time_filter=${timeFilter}`;
-      }
-      if (customDate) {
+
+      if (timeFilter === 'custom' && customDate) {
         const adjustedDate = new Date(customDate);
         adjustedDate.setDate(adjustedDate.getDate() + 1);
         const correctedDateStr = adjustedDate.toISOString().split('T')[0];
         apiUrl += apiUrl.includes('?') ? '&' : '?';
         apiUrl += `custom_start_date=${correctedDateStr}`;
+      } else if (timeFilter !== 'all') {
+        apiUrl += `?time_filter=${timeFilter}`;
       }
+      
       if (statusFilter && statusFilter !== 'all') {
         apiUrl += apiUrl.includes('?') ? '&' : '?';
         apiUrl += `status_filter=${statusFilter}`;
