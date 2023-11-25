@@ -42,3 +42,21 @@ uvicorn main:app --reload
 - `MONGO_URI`: Connection string for MongoDB.
 - `ALLOWED_ORIGINS`: List of origins allowed to access the backend.
 
+## Example JSON
+   
+   ```json
+[{"_id":"655a766de01c31c9d2c6529b",
+"summary":"A conversation between Alex from Entered Solution and a customer named Craig Simmons, who runs a catering company.",
+"sentiment":"Positive",
+"tags":["catering","rental","event planning"],
+"speaker_0":{"name":"Alex","role":"Representative"},
+"speaker_1":{"name":"Craig Simmons","role":"Customer"},
+"all_text":"All Text from transcript",
+"user":"alex2",
+"date":"2023-11-19",
+"time":"12:45",
+"file_name":"alex2-2023-11-19-12-45",
+"conversation_id":"fcf592e2-4658-409c-a135-b38040c26d41",
+"datetime":"2023-11-19T12:45:00"}
+]
+   ```
