@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from "@/components/ui/theme-provider"
 import { SearchFilterProvider } from '@/context/SearchFilterContext';
+import { GeistSans } from 'geist/font/sans';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,8 +18,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="en" className={GeistSans.className}>
+      <body >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
