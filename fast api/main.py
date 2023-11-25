@@ -199,7 +199,3 @@ async def remove_tag(conversation_id: str, tag: str):
     raise HTTPException(
         status_code=404, detail="Conversation not found or tag did not exist."
     )
-
-
-# Run this in terminal to start the server:
-# uvicorn main:app --reload
