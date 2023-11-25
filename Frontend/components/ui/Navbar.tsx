@@ -34,6 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({
     onToggleNav,
     conversationCounts
 }) => {
+
     return (
         <nav className={`navbar ${isNavShrunk ? 'shrunk' : ''}`}>
             {isNavShrunk ? (

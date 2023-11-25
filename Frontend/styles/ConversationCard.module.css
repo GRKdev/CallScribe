@@ -168,3 +168,8 @@
   color: grey;
   font-style: italic;
 }
+
+.summaryClickable {
+  cursor: pointer;
+  /* other styles for your summary text */
+}

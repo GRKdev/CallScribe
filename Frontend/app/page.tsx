@@ -41,7 +41,7 @@ const HomePage: React.FC = () => {
     setFilteredSentimentCounts(calculateSentimentCounts(filteredConversations));
   }, [filteredConversations]);
 
-  const handleCustomDateChange = (date: Date) => {
+  const handleCustomDateChange = (date: Date | null) => {
     setTimeFilter('custom');
     setCustomDate(date);
   };

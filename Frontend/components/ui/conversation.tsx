@@ -65,8 +65,9 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
             />
           </>
         ) : (
-          <span className={summaryClass}>{conversation.summary}</span>
-        )}
+          <span onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass}`}>
+            {conversation.summary}
+          </span>)}
       </div>
 
       <div className={styles.cardFooter}>
