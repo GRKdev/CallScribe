@@ -20,13 +20,14 @@ const calculateSentimentCounts = (conversations: ConversationType[]): SentimentC
 
 const HomePage: React.FC = () => {
   const [timeFilter, setTimeFilter] = useState<string>('24h');
+  const [statusFilter, setStatusFilter] = useState<string>('all');
   const [customDate, setCustomDate] = useState<Date | null>(null);
   const [searchTerm, setSearchTerm] = useState<string>('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
   const [isNavShrunk, setIsNavShrunk] = useState(false);
   const [updatedStatus, setUpdatedStatus] = useState<Record<string, string>>({});
 
-  const [allConversations] = useFetchConversations(timeFilter, customDate);
+  const [allConversations] = useFetchConversations(timeFilter, customDate, statusFilter);
   const filteredConversations = useSearchFilter(debouncedSearchTerm, allConversations);
   const conversationCounts = calculateConversationsCounts(filteredConversations);
 
@@ -44,6 +45,10 @@ const HomePage: React.FC = () => {
     setTimeFilter('custom');
     setCustomDate(date);
   };
+
+  const handleStatusFilterChange = useCallback((status: string) => {
+    setStatusFilter(status);
+  }, []);
 
   const toggleNavbar = () => setIsNavShrunk(!isNavShrunk);
 
@@ -70,7 +75,8 @@ const HomePage: React.FC = () => {
         isNavShrunk={isNavShrunk}
         onToggleNav={toggleNavbar}
         conversationCounts={conversationCounts}
-        filterStatus={handleStatusUpdate}
+        statusFilter={statusFilter}
+        onStatusFilterChange={handleStatusFilterChange}
       />
       <div className="conversation-cards">
         {handleFilteredConversations.map((conversation) => (

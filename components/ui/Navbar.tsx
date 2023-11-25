@@ -16,7 +16,8 @@ type NavbarProps = {
     sentimentCounts: SentimentCounts;
     isNavShrunk: boolean;
     onToggleNav: () => void;
-    filterStatus: (status: string) => void;
+    statusFilter: string;
+    onStatusFilterChange: (filter: string) => void;
     conversationCounts: ConversationCounts;
 };
 
@@ -25,6 +26,8 @@ const Navbar: React.FC<NavbarProps> = ({
     onSearchChange,
     timeFilter,
     onTimeFilterChange,
+    statusFilter,
+    onStatusFilterChange,
     onDateSelect,
     sentimentCounts,
     isNavShrunk,
@@ -37,7 +40,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 <button style={{ justifyContent: 'center' }} onClick={onToggleNav}><ArrowRightFromLine /></button>
             ) : (
                 <>  <div className="flex justify-center items-center p-1 gap-2">
-                    <h1 className="text-center text-2xl font-bold">CallScribe Center</h1>
+                    <h1 className="text-center text-2xl font-bold">CallScribe</h1>
                     <div className="logo-icon">
                         <CallLogo />
                     </div>
@@ -69,10 +72,37 @@ const Navbar: React.FC<NavbarProps> = ({
                     </div>
 
                     <div className="filterButtons justify-between px-11 pt-2">
-                        <Button variant="secondary" onClick={() => filterStatus('OK')}>All</Button>
-                        <Button variant="secondary" onClick={() => filterStatus('Marked')}><BookmarkX width={18} color='red' /></Button>
-                        <Button variant="secondary" onClick={() => filterStatus('Not Read')}><Bookmark width={18} /></Button>
-                        <Button variant="secondary" onClick={() => filterStatus('OK')}><BookmarkCheck width={18} color='green' /></Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onStatusFilterChange('all')}
+                            className={statusFilter === 'all' ? 'activeFilter' : ''}
+                        >
+                            All
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onStatusFilterChange('Marked')}
+                            className={statusFilter === 'Marked' ? 'activeFilter' : ''}
+                        >
+                            <BookmarkX width={18} color='red' />
+
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onStatusFilterChange('Not Read')}
+                            className={statusFilter === 'Not Read' ? 'activeFilter' : ''}
+                        >
+                            <Bookmark width={18} />
+
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onStatusFilterChange('OK')}
+                            className={statusFilter === 'OK' ? 'activeFilter' : ''}
+                        >
+                            <BookmarkCheck width={18} color='green' />
+
+                        </Button>
                     </div>
                     <ul className="tagConversationContainer p-2">
                         <li className='tagConversation'>Not Read: <span className="not-read-count">{conversationCounts.not_read}</span></li>

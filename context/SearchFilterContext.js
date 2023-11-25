@@ -9,7 +9,7 @@ export const useSearchFilter = () => useContext(SearchFilterContext);
 export const SearchFilterProvider = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [timeFilter, setTimeFilter] = useState('24H');
-    const [statusfilter, setStatusFilter] = useState('all');
+    const [statusFilter, setStatusFilter] = useState('all');
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -24,7 +24,7 @@ export const SearchFilterProvider = ({ children }) => {
     };
 
     return (
-        <SearchFilterContext.Provider value={{ searchTerm, timeFilter, statusfilter, handleSearchChange, handleFilterChange, handleStatusFilterChange }}>
+        <SearchFilterContext.Provider value={{ searchTerm, timeFilter, statusFilter, handleSearchChange, handleFilterChange, handleStatusFilterChange }}>
             {children}
         </SearchFilterContext.Provider>
     );
