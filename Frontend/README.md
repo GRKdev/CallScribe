@@ -22,7 +22,7 @@ This Next.js application serves as the frontend interface for a call center mana
 
 1. **Clone the Repository**:
    ```bash
-   git clone [REPOSITORY URL]
+   git clone https://github.com/GRKdev/CallScribe.git
    ```
 
 2. **Install Dependencies**:

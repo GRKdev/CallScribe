@@ -1,6 +1,5 @@
 
 # CallScribe
-
 This comprehensive system integrates audio file processing, backend management, and frontend display to handle call center conversations. It processes audio files for transcription and analysis, manages conversation data via a FastAPI backend, and displays conversation details through a Next.js frontend.
 
 ## Overview
@@ -25,6 +24,13 @@ This comprehensive system integrates audio file processing, backend management, 
 ### 3. Next.js Frontend Application
 - **Function**: Displays conversation information retrieved from the backend.
 - **Tech Stack**: Next.js, React.
+- **Features**:
+  - Dynamic display of conversation cards.
+  - Interactive filters for time, status, and custom date.
+  - Search functionality for specific conversations.
+  - Responsive design for various screen sizes.
+  - Sentiment analysis visualization.
+  - Enables status updates of conversations.
 
 ## Setup and Installation
 
