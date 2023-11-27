@@ -8,6 +8,7 @@ export const useFetchConversations = (
   timeFilter: string,
   customDate: Date | null,
   statusFilter: string,
+  sentimentFilter: string,
 ): [ConversationType[], SentimentCounts, ConversationCounts] => {
   const [conversations, setConversations] = useState<ConversationType[]>([]);
   const [sentimentCounts, setSentimentCounts] = useState<SentimentCounts>({
@@ -40,7 +41,10 @@ export const useFetchConversations = (
         apiUrl += apiUrl.includes('?') ? '&' : '?';
         apiUrl += `status_filter=${statusFilter}`;
       }
-
+      if (sentimentFilter && sentimentFilter !== 'all') {
+        apiUrl += apiUrl.includes('?') ? '&' : '?';
+        apiUrl += `sentiment_filter=${sentimentFilter}`;
+      }
       try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
@@ -57,7 +61,7 @@ export const useFetchConversations = (
     };
 
     fetchData();
-  }, [timeFilter, customDate, statusFilter]);
+  }, [timeFilter, customDate, statusFilter, sentimentFilter]);
 
   return [conversations, sentimentCounts, conversationCounts];
 };

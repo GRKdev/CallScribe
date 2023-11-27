@@ -79,6 +79,7 @@ class Status(str, Enum):
 
 
 class Sentiment(str, Enum):
+    ALL = "all"
     POSITIVE = "Positive"
     NEGATIVE = "Negative"
     NEUTRAL = "Neutral"
@@ -109,7 +110,7 @@ async def list_conversations(
     status_filter: Status = Status.ALL,
     search: Optional[str] = None,
     custom_start_date: Optional[str] = None,
-    sentiment_filter: Optional[Sentiment] = None,
+    sentiment_filter: Sentiment = Sentiment.ALL,
 ):
     query = {}
 
@@ -130,7 +131,7 @@ async def list_conversations(
     if status_filter != Status.ALL:
         query["status"] = status_filter.value
 
-    if sentiment_filter:
+    if sentiment_filter != Sentiment.ALL:
         query["sentiment"] = sentiment_filter.value
 
     if search:

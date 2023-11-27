@@ -3,7 +3,7 @@ import { ModeToggle } from "@/components/ui/toggle";
 import { CalendarForm } from '@/hooks/calendar';
 import SentimentChart from "@/hooks/SentimentChart";
 import { SentimentCounts, ConversationCounts } from '@/types/conversation';
-import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
+import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX, Meh, Frown, Smile } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import CallLogo from "@/components/ui/ccLogo"
 
@@ -19,6 +19,8 @@ type NavbarProps = {
     statusFilter: string;
     onStatusFilterChange: (filter: string) => void;
     conversationCounts: ConversationCounts;
+    sentimentFilter: string;
+    onSentimentFilterChange: (filter: string) => void;
 };
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -32,7 +34,10 @@ const Navbar: React.FC<NavbarProps> = ({
     sentimentCounts,
     isNavShrunk,
     onToggleNav,
-    conversationCounts
+    conversationCounts,
+    sentimentFilter,
+    onSentimentFilterChange,
+
 }) => {
 
     return (
@@ -90,21 +95,57 @@ const Navbar: React.FC<NavbarProps> = ({
                         </Button>
                         <Button
                             variant="secondary"
-                            onClick={() => onStatusFilterChange('Not Read')}
-                            className={statusFilter === 'Not Read' ? 'activeFilter' : ''}
-                        >
-                            <Bookmark width={18} />
-
-                        </Button>
-                        <Button
-                            variant="secondary"
                             onClick={() => onStatusFilterChange('OK')}
                             className={statusFilter === 'OK' ? 'activeFilter' : ''}
                         >
                             <BookmarkCheck width={18} color='green' />
 
                         </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onStatusFilterChange('Not Read')}
+                            className={statusFilter === 'Not Read' ? 'activeFilter' : ''}
+                        >
+                            <Bookmark width={18} />
+
+                        </Button>
                     </div>
+
+                    <div className="filterButtons justify-between px-11 pt-2">
+                        <Button
+                            variant="secondary"
+                            onClick={() => onSentimentFilterChange('all')}
+                            className={sentimentFilter === 'all' ? 'activeFilter' : ''}
+                        >
+                            All
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onSentimentFilterChange('Negative')}
+                            className={sentimentFilter === 'Negative' ? 'activeFilter' : ''}
+                        >
+                            <Frown width={18} color='red' />
+
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onSentimentFilterChange('Positive')}
+                            className={sentimentFilter === 'Positive' ? 'activeFilter' : ''}
+                        >
+                            <Smile width={18} color='green' />
+
+                        </Button>
+                        <Button
+                            variant="secondary"
+                            onClick={() => onSentimentFilterChange('Neutral')}
+                            className={sentimentFilter === 'Neutral' ? 'activeFilter' : ''}
+                        >
+                            <Meh width={18} />
+
+                        </Button>
+                    </div>
+
+
                     <ul className="tagConversationContainer p-2">
                         <li className='tagConversation'>Not Read: <span className="not-read-count">{conversationCounts.not_read}</span></li>
                         <li className='tagConversation'>Marked: <span className="marked-count">{conversationCounts.marked}</span></li>
