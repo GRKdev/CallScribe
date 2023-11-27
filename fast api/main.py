@@ -145,6 +145,14 @@ async def list_conversations(
     return custom_jsonable_encoder(conversations)
 
 
+@app.delete("/conversations/{conversation_id}")
+async def delete_conversation(conversation_id: str):
+    result = collection.delete_one({"conversation_id": conversation_id})
+    if result.deleted_count:
+        return {"message": "Conversation deleted successfully"}
+    raise HTTPException(status_code=404, detail="Conversation not found")
+
+
 @app.put("/conversations/{conversation_id}/state")
 async def update_conversation_state(conversation_id: str, update: UpdateStatus):
     result = collection.update_one(
