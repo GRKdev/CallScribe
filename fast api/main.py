@@ -78,10 +78,17 @@ class Status(str, Enum):
     NOT_READ = "Not Read"
 
 
+class Sentiment(str, Enum):
+    POSITIVE = "Positive"
+    NEGATIVE = "Negative"
+    NEUTRAL = "Neutral"
+
+
 class ConversationUpdate(BaseModel):
     summary: Optional[str] = None
     tags: Optional[List[str]] = None
     status: Optional[Status] = None
+    sentiment: Optional[Sentiment] = None
 
 
 class UpdateStatus(BaseModel):
@@ -102,6 +109,7 @@ async def list_conversations(
     status_filter: Status = Status.ALL,
     search: Optional[str] = None,
     custom_start_date: Optional[str] = None,
+    sentiment_filter: Optional[Sentiment] = None,
 ):
     query = {}
 
@@ -121,6 +129,9 @@ async def list_conversations(
 
     if status_filter != Status.ALL:
         query["status"] = status_filter.value
+
+    if sentiment_filter:
+        query["sentiment"] = sentiment_filter.value
 
     if search:
         query["$or"] = [
