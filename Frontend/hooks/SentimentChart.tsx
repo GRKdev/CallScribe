@@ -33,14 +33,14 @@ const SentimentChart: React.FC<SentimentChartProps> = ({ sentimentCounts }) => {
                 label: "",
                 data: [sentimentCounts.positive, sentimentCounts.negative, sentimentCounts.neutral],
                 backgroundColor: [
-                    'rgba(53, 162, 235, 0.5)',
+                    'rgba(53, 235, 162, 0.5)',
                     'rgba(255, 99, 132, 0.5)',
-                    'rgba(255, 205, 86, 0.5)',
+                    'rgba(53, 162, 235, 0.5)',
                 ],
                 borderColor: [
-                    'rgba(53, 162, 235, 1)',
+                    'rgba(53, 235, 162, 1)',
                     'rgba(255, 99, 132, 1)',
-                    'rgba(255, 205, 86, 1)',
+                    'rgba(53, 162, 235, 1)',
                 ],
                 borderWidth: 1,
             },

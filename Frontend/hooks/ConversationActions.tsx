@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from '@/styles/ConversationCard.module.css';
-import { Bookmark, BookmarkCheck, BookmarkX, Delete } from 'lucide-react';
+import { Bookmark, BookmarkCheck, BookmarkX, Trash2 } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import {
   AlertDialog,
@@ -71,16 +71,31 @@ const ConversationActions: React.FC<ConversationActionsProps> = ({ conversationI
     }
   }
   const handleDelete = async () => {
-    setIsDialogOpen(false); // Close the dialog
-    await deleteConversation(); // Then proceed with deletion
+    setIsDialogOpen(false);
+    await deleteConversation();
   }
   return (
     <div className={styles.buttonContainer}>
-      <Button variant="secondary" onClick={() => updateStatus('OK')}><BookmarkCheck width={18} color='green' />Ok</Button>
-      <Button variant="secondary" onClick={() => updateStatus('Marked')}><BookmarkX width={18} color='red' />Mark</Button>
-      <Button variant="secondary" onClick={() => updateStatus('Not Read')}><Bookmark width={18} />Not Read</Button>
-
-      <Button variant="destructive" onClick={() => setIsDialogOpen(true)}><Delete width={18} />Delete</Button>
+      <div className={styles.mainButtons}>
+        <Button variant="secondary" onClick={() => updateStatus('OK')}>
+          <BookmarkCheck width={18} color='green' />
+          <span className={styles.buttonText}>Ok</span>
+        </Button>
+        <Button variant="secondary" onClick={() => updateStatus('Marked')}>
+          <BookmarkX width={18} color='red' />
+          <span className={styles.buttonText}>Mark</span>
+        </Button>
+        <Button variant="secondary" onClick={() => updateStatus('Not Read')}>
+          <Bookmark width={18} />
+          <span className={styles.buttonText}>Not Read</span>
+        </Button>
+      </div>
+      <div className={styles.rightButton}>
+        <Button variant="destructive" onClick={() => setIsDialogOpen(true)}>
+          <Trash2 width={18} />
+          <span className={styles.buttonText}>Delete</span>
+        </Button>
+      </div>
 
       <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <AlertDialogTrigger asChild>
@@ -89,8 +104,8 @@ const ConversationActions: React.FC<ConversationActionsProps> = ({ conversationI
           <AlertDialogHeader>
             <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
             <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete this
-              conversation data from our servers.
+              This action cannot be undone. This will permanently delete the
+              conversation data from the server.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
