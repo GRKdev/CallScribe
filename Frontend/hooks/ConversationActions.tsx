@@ -93,7 +93,7 @@ const ConversationActions: React.FC<ConversationActionsProps> = ({ conversationI
       <div className={styles.rightButton}>
         <Button variant="destructive" onClick={() => setIsDialogOpen(true)}>
           <Trash2 width={18} />
-          <span className={styles.buttonText}>Delete</span>
+          <span className={styles.buttonText}></span>
         </Button>
       </div>
 
