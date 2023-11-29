@@ -29,10 +29,11 @@ interface FormData {
 
 
 export function CalendarForm({ onDateSelect }: CalendarFormProps) {
-    const form = useForm({
+    const form = useForm<FormData>({
         resolver: zodResolver(z.object({ dob: z.date().optional() })),
         defaultValues: { dob: null },
     });
+
 
     const { handleSubmit, setValue, control } = form;
 
@@ -65,8 +66,8 @@ export function CalendarForm({ onDateSelect }: CalendarFormProps) {
                                         mode="single"
                                         selected={field.value || undefined}
                                         onSelect={(date: Date | undefined) => {
-                                            setValue('dob', date);
-                                            handleSubmit(onSubmit)(); //
+                                            setValue('dob', date ?? null);
+                                            handleSubmit(onSubmit)();
                                         }}
                                         disabled={(date) =>
                                             date > new Date() || date < new Date("1900-01-01")

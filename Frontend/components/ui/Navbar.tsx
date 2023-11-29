@@ -12,7 +12,7 @@ type NavbarProps = {
     onSearchChange: (value: string) => void;
     timeFilter: string;
     onTimeFilterChange: (filter: string) => void;
-    onDateSelect: (date: Date) => void;
+    onDateSelect: (date: Date | null) => void;
     sentimentCounts: SentimentCounts;
     isNavShrunk: boolean;
     onToggleNav: () => void;

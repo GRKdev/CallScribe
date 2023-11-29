@@ -10,6 +10,7 @@ export const SearchFilterProvider = ({ children }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [timeFilter, setTimeFilter] = useState('24H');
     const [statusFilter, setStatusFilter] = useState('all');
+    const [sentimentFilter, setSentimentFilter] = useState('all');
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
@@ -23,8 +24,12 @@ export const SearchFilterProvider = ({ children }) => {
         setStatusFilter(newFilter);
     };
 
+    const handleSentimentFilterChange = (newFilter) => {
+        setSentimentFilter(newFilter);
+    }
+
     return (
-        <SearchFilterContext.Provider value={{ searchTerm, timeFilter, statusFilter, handleSearchChange, handleFilterChange, handleStatusFilterChange }}>
+        <SearchFilterContext.Provider value={{ searchTerm, timeFilter, statusFilter, sentimentFilter, handleSearchChange, handleFilterChange, handleStatusFilterChange, handleSentimentFilterChange }}>
             {children}
         </SearchFilterContext.Provider>
     );

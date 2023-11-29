@@ -11,17 +11,14 @@ import pymongo
 import dotenv
 from fastapi.middleware.cors import CORSMiddleware
 import pytz
-from starlette.middleware.base import BaseHTTPMiddleware
 
-dotenv.load_dotenv()
+# dotenv.load_dotenv()
 
 app = FastAPI()
 
-ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "").split(",")
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins=["https://cc.iand.dev"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
