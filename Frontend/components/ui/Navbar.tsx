@@ -45,26 +45,25 @@ const Navbar: React.FC<NavbarProps> = ({
             {isNavShrunk ? (
                 <button style={{ justifyContent: 'center' }} onClick={onToggleNav}><ArrowRightFromLine /></button>
             ) : (
-                <>  <div className="flex justify-center items-center p-1 gap-2">
+                <>  <header className="flex justify-center items-center p-1 gap-2">
                     <h1 className="text-center text-2xl font-bold">CallScribe</h1>
                     <div className="logo-icon">
                         <CallLogo />
                     </div>
-                </div>
+                </header>
 
-                    <div className="p-4">
-                        <div className="searchContainer flex justify-between">
+                    <section className="searchContainer flex justify-between p-4">
 
-                            <input
-                                className="pl-2"
-                                type="text"
-                                value={searchTerm}
-                                onChange={(e) => onSearchChange(e.target.value)}
-                                placeholder="Search conversations"
-                            />
-                        </div>
-                    </div>
-                    <div className="filterButtons justify-between px-2">
+                        <input
+                            className="pl-2"
+                            type="text"
+                            value={searchTerm}
+                            onChange={(e) => onSearchChange(e.target.value)}
+                            placeholder="Search conversations"
+                        />
+                    </section>
+
+                    <section className="filterButtons justify-between px-2">
                         {['24h', '7d', '1m', 'all'].map((filter) => (
                             <button
                                 key={filter}
@@ -75,9 +74,9 @@ const Navbar: React.FC<NavbarProps> = ({
                             </button>
                         ))}
                         <CalendarForm onDateSelect={onDateSelect} />
-                    </div>
+                    </section>
 
-                    <div className="filterButtons justify-between px-11 pt-2">
+                    <section className="filterButtons justify-between px-11 pt-2">
                         <Button
                             variant="secondary"
                             onClick={() => onStatusFilterChange('all')}
@@ -109,9 +108,9 @@ const Navbar: React.FC<NavbarProps> = ({
                             <Bookmark width={18} />
 
                         </Button>
-                    </div>
+                    </section>
 
-                    <div className="filterButtons justify-between px-11 pt-2">
+                    <section className="filterButtons justify-between px-11 pt-2">
                         <Button
                             variant="secondary"
                             onClick={() => onSentimentFilterChange('all')}
@@ -143,18 +142,19 @@ const Navbar: React.FC<NavbarProps> = ({
                             <Meh width={18} />
 
                         </Button>
-                    </div>
+                    </section>
 
 
-                    <ul className="tagConversationContainer p-2">
+                    <ul className="hidden md:flex tagConversationContainer p-2">
                         <li className='tagConversation'>Not Read: <span className="not-read-count">{conversationCounts.not_read}</span></li>
                         <li className='tagConversation'>Marked: <span className="marked-count">{conversationCounts.marked}</span></li>
-                        <li className='tagConversation'>OK: <span className="ok-count">{conversationCounts.ok}</span></li>
+                        <li className='tagConversation'>Ok: <span className="ok-count">{conversationCounts.ok}</span></li>
                     </ul>
 
-                    <div className="hidden md:flex chartBox" style={{ height: '200px' }}>
+                    <aside className="chartBox" style={{ height: '200px' }}>
                         <SentimentChart sentimentCounts={sentimentCounts} />
-                    </div>
+                    </aside >
+
                     <div className="tagContainer p-2">
 
                         <ModeToggle />

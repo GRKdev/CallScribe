@@ -115,38 +115,17 @@
 .conversation-cards {
   margin-top: 1rem;
   padding: 0 1rem;
-  margin-left: var(--navbar-width);
+  margin-left: 250px;
 }
 
-@media (max-width: 790px) {
-  .navbar {
-    width: 100%;
-    height: auto;
-    top: 0;
-    position: fixed;
-    overflow-x: auto;
-    background-color: var(--header-bg);
 
-  }
-
-  .navbar.shrunk {
-    width: 100%;
-  }
-
-  .container,
-  .container.shrunk {
-    margin-left: 0;
-    margin-top: 60px;
-  }
-
-  .conversation-cards {
-    padding: 0 0%;
-    margin-left: 0;
-  }
-
-  .chartBox {
-    display: none;
-  }
+.chartBox {
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  margin: 8px;
+  margin-top: 8px;
+  display: flex; 
+  justify-content: center;
 }
 
 
@@ -180,15 +159,6 @@
 }
 .filterButtons .activeFilter {
   background-color: var(--filter-button-hover-bg);
-}
-
-.chartBox {
-  border: 2px solid var(--border);; 
-  border-radius: 4px; 
-  margin: 8px;
-  margin-top: 8px;
-  display: flex; 
-  justify-content: center; 
 }
 
 .tagConversationContainer {
@@ -227,3 +197,38 @@
 #logo-icon path {
   fill: var(--icon-fill);
 }
+
+
+@media (max-width: 790px) {
+  .navbar {
+    width: 100%;
+    height: auto;
+    top: 0;
+    position: fixed;
+    overflow-x: auto;
+    background-color: var(--header-bg);
+    opacity: 0.99;
+
+  }
+
+  .navbar.shrunk {
+    width: 100%;
+  }
+
+  .container,
+  .container.shrunk {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  .conversation-cards {
+    padding: 0 0%;
+    margin-left: 0;
+  }
+}
+  @media (max-width: 768px) {
+    .chartBox {
+      display: none;
+    }
+  }
+

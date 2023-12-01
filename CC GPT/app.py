@@ -63,7 +63,6 @@ def transform_transcribe_output(json_output):
         f"Speaker_{current_speaker}: {current_transcription}"
     )
 
-    # Ensure consistent format for all lines
     formatted_output = "\n\n".join(merged_transcriptions_and_speakers)
     return formatted_output.replace("Speaker_", "Speaker ")
 
