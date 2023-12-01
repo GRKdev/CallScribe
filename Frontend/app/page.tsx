@@ -86,13 +86,21 @@ const HomePage: React.FC = () => {
         onSentimentFilterChange={handleSentimentFilterChange}
       />
       <div className="conversation-cards">
-        {handleFilteredConversations.map((conversation) => (
-          <ConversationCard
-            key={conversation.conversation_id}
-            conversation={conversation}
-            onStatusUpdate={handleStatusUpdate}
-          />
-        ))}
+        {handleFilteredConversations.length > 0 ? (
+          handleFilteredConversations.map((conversation) => (
+            <ConversationCard
+              key={conversation.conversation_id}
+              conversation={conversation}
+              onStatusUpdate={handleStatusUpdate}
+            />
+          ))
+        ) : (
+          <div className="no-conversations-container">
+            <div className="no-conversations">
+              There are no conversations.
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

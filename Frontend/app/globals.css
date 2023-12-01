@@ -118,6 +118,20 @@
   margin-left: 250px;
 }
 
+.no-conversations-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 300px;
+}
+
+.no-conversations {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+}
 
 .chartBox {
   border: 2px solid var(--border);

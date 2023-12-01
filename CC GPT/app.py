@@ -115,7 +115,7 @@ def process_audio_file(file_path):
             print(f"- Transcription stored in {txt_file_path}")
 
             chat_prompt = (
-                f"Given the following text from a file named {base_name}, please analyze the content and generate a JSON response. The response should include a brief summary (20-40 words) that accurately describes the conversation and identifies the speakers with inferred roles or names when possible. Also include sentiment analysis (categorized as Neutral, Positive, or Negative), relevant tags, and extract speakers/role from the file name. The JSON response should be structured for use in a MongoDB database\n\n"
+                f"Given the following text from a file named {base_name}, please analyze the content and generate a JSON response. The response should include a brief summary (20-40 words) that accurately describes the conversation and identifies the speakers with inferred roles or names when possible. Also include sentiment analysis (categorized as Neutral, Positive, or Negative), ONLY maximum 4 relevant tags, and extract speakers/role from the file name. The JSON response should be structured for use in a MongoDB database\n\n"
                 f"Text from File ({base_name}):\n{transformed_output}\n\nResponse:"
             )
             json_format = {
