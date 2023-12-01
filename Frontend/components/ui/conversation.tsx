@@ -6,6 +6,7 @@ import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, Bookma
 import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
 import FormatDateTime from '@/components/ui/FormatDateTime';
 import ConversationActions from '@/hooks/ConversationActions';
+import ConversationTags from '@/hooks/ConversationTags';
 
 interface ConversationCardProps {
   conversation: ConversationType;
@@ -17,7 +18,11 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
   const [currentStatus, setCurrentStatus] = useState(conversation.status);
   const summaryClass = conversation.status === 'OK' ? styles.greyText : '';
   const userNameClass = conversation.status === 'OK' ? styles.userNameOk : styles.userName;
-
+  const conversationCardClass = conversation.status === 'Marked' ? styles.conversationCardMarked : styles.conversationCard;
+  const [tags, setTags] = useState(conversation.tags);
+  const onTagsUpdate = useCallback((newTags: string[]) => {
+    setTags(newTags);
+  }, []);
 
   const handleExpandClick = useCallback(() => {
     setIsExpanded((prevState) => !prevState);
@@ -30,7 +35,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
   }, [conversation.conversation_id, onStatusUpdate]);
 
   return (
-    <div className={styles.conversationCard}>
+    <div className={conversationCardClass}>
       <div className={styles.cardHeader}>
         <div className={styles.leftSide}>
           {currentStatus === 'Not Read' ? (
@@ -81,9 +86,11 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
           )}
         </span>
         <div className={styles.tagContainer}>
-          {conversation.tags && conversation.tags.map((tag) => (
-            <span key={tag} className={styles.tag}>{tag}</span>
-          ))}
+          <ConversationTags
+            conversationId={conversation.conversation_id}
+            currentTags={tags}
+            onTagsUpdate={onTagsUpdate}
+          />
         </div>
         <button
           onClick={handleExpandClick}

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Body
 from typing import List
 from datetime import datetime, timedelta
 from pymongo import MongoClient
@@ -97,8 +97,9 @@ class SummaryUpdate(BaseModel):
     summary: str
 
 
-class TagsUpdate(BaseModel):
-    tags: List[str]
+# Define the Pydantic model for the request body
+class Tag(BaseModel):
+    tag: str
 
 
 @app.get("/conversations")
@@ -182,37 +183,27 @@ async def update_summary(conversation_id: str, summary_data: SummaryUpdate):
     )
 
 
-@app.patch("/conversations/{conversation_id}/tags")
-async def update_tags(conversation_id: str, tags_data: TagsUpdate):
-    result = collection.update_one(
-        {"conversation_id": conversation_id}, {"$set": {"tags": tags_data.tags}}
-    )
-    if result.modified_count:
-        return {"message": "Tags updated successfully."}
-    raise HTTPException(
-        status_code=404, detail="Conversation not found or no update needed."
-    )
-
-
 @app.post("/conversations/{conversation_id}/tags/add")
-async def add_tag(conversation_id: str, tag: str):
+async def add_tag(conversation_id: str, tag: Tag = Body(...)):
     result = collection.update_one(
-        {"conversation_id": conversation_id}, {"$addToSet": {"tags": tag}}
+        {"conversation_id": conversation_id}, {"$addToSet": {"tags": tag.tag}}
     )
     if result.modified_count:
         return {"message": "Tag added successfully."}
-    raise HTTPException(
-        status_code=404, detail="Conversation not found or tag already exists."
-    )
+    else:
+        raise HTTPException(
+            status_code=404, detail="Conversation not found or tag already exists."
+        )
 
 
 @app.post("/conversations/{conversation_id}/tags/remove")
-async def remove_tag(conversation_id: str, tag: str):
+async def remove_tag(conversation_id: str, tag: Tag = Body(...)):
     result = collection.update_one(
-        {"conversation_id": conversation_id}, {"$pull": {"tags": tag}}
+        {"conversation_id": conversation_id}, {"$pull": {"tags": tag.tag}}
     )
     if result.modified_count:
         return {"message": "Tag removed successfully."}
-    raise HTTPException(
-        status_code=404, detail="Conversation not found or tag did not exist."
-    )
+    else:
+        raise HTTPException(
+            status_code=404, detail="Conversation not found or tag did not exist."
+        )

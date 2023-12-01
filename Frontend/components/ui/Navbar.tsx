@@ -81,6 +81,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onStatusFilterChange('all')}
                             className={statusFilter === 'all' ? 'activeFilter' : ''}
+
                         >
                             All
                         </Button>
