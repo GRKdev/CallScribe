@@ -138,9 +138,11 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    
+    cursor: pointer;
   }
-
+  .tag:hover {
+    color: var(--search-border);
+  }
   .bold {
     font-weight: bold;
     padding-left: 4px;
@@ -165,7 +167,7 @@
 
   .speakerInfoContainer {
     display: flex;
-    justify-content: space-around; /* Space around items */
+    justify-content: space-around; 
     align-items: center;
     border: 2px solid var(--border);
     padding: 5px;
@@ -174,7 +176,7 @@
     background-color: var(--speaker1-bg);
   }
   .speakerInfo {
-    margin-right: 0px; /* Adjust as needed for slight right shift */
+    margin-right: 0px; 
   }
 
   .dialogueBox {
@@ -189,5 +191,4 @@
 
 .summaryClickable {
   cursor: pointer;
-  /* other styles for your summary text */
 }

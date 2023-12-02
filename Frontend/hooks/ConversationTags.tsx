@@ -62,21 +62,16 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
+      event.preventDefault();
       handleAddTag();
     }
-  };
-
-  const toggleAdding = () => {
-    setIsAdding(true);
   };
 
   const handlePlusClick = () => {
-    if (isAdding) {
-      handleAddTag();
-    } else {
-      toggleAdding();
-    }
+    setIsAdding(true);
+    setTimeout(() => inputRef.current?.focus(), 0);
   };
+
 
   const removeTag = async (tag: string) => {
     try {
@@ -120,17 +115,20 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
           <input
             ref={inputRef}
             type="text"
-            placeholder="Add tag"
+            placeholder=" Add tag and press Enter"
             value={newTag}
             onChange={(e) => setNewTag(e.target.value)}
             onKeyDown={handleKeyDown}
             className={styles.tagInput}
             autoFocus
           />
+
         )}
-        <button onClick={handlePlusClick}>
-          <PlusCircleIcon height={18} />
-        </button>
+        {!isAdding && (
+          <button onClick={handlePlusClick}>
+            <PlusCircleIcon height={18} />
+          </button>
+        )}
       </div>
     </div>
   );
