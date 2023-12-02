@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={GeistSans.className}>
-      <body >
+      <body className='bcg'>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

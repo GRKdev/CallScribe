@@ -1,10 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
+    --backgroundcontent: white;
+    --background-image:  linear-gradient(#dddddd 1px, transparent 1px), linear-gradient(90deg, #dddddd 1px, transparent 1px), linear-gradient(#dddddd 0.5px, transparent 0.5px), linear-gradient(90deg, #dddddd 0.5px, #ffffff 0.5px);
+    --background-size: 25px 25px, 25px 25px, 5px 5px, 5px 5px;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -20,7 +23,7 @@
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: #ddd;
+    --border: #bbbaba;
     --input: 214.3 31.8% 91.4%;
     --ring: 221.2 83.2% 53.3%;
     --radius: 0.5rem;
@@ -41,9 +44,12 @@
     --icon-fill-dark: #ffffff;
     --icon-fill: var(--icon-stroke-light)
   }
- 
+
   .dark {
     --background: 240 10% 3.9%;
+    --backgroundcontent: rgba(8, 8, 10, 1);
+    --background-image:  linear-gradient(#0e0f13 1px, transparent 1px), linear-gradient(90deg, #0e0f13 1px, transparent 1px), linear-gradient(#0e0f13 0.5px, transparent 0.5px), linear-gradient(90deg, #0e0f13 0.5px, rgba(8, 8, 10, 1) 0.5px);
+    --background-size: 25px 25px, 25px 25px, 5px 5px, 5px 5px;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -89,6 +95,11 @@
   }
 }
 
+.bcg {
+  background-image: var(--background-image);
+  background-size: var(--background-size);
+}
+
 .navbar {
   position: fixed;
   top: 0;
@@ -106,6 +117,7 @@
 
 .container {
   transition: margin-left 0.3s;
+  
 }
 
 .container.shrunk {

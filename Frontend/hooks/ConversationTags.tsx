@@ -115,7 +115,7 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
           <input
             ref={inputRef}
             type="text"
-            placeholder=" Add tag and press Enter"
+            placeholder=" Add tag & press Enter"
             value={newTag}
             onChange={(e) => setNewTag(e.target.value)}
             onKeyDown={handleKeyDown}

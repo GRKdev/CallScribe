@@ -1,5 +1,5 @@
 .conversationCard {
-    border: 2px solid var(--border);
+    border: 2px solid;
     border-radius: var(--radius);
     margin: 16px;
     overflow: hidden;
@@ -13,8 +13,23 @@
     overflow: hidden;
     background: var(--card);
   }
-
+  .conversationCardOK {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    margin: 16px;
+    overflow: hidden;
+    background: var(--card);
+  }
   .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    background: var(--header-bg); 
+    color: var(--popover-foreground);
+    border-bottom: 1px solid;
+  }
+  .cardHeaderOK {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -23,10 +38,18 @@
     color: var(--popover-foreground);
     border-bottom: 1px solid var(--border);
   }
-  
+  .cardHeaderMarked {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    background: var(--header-bg); 
+    color: var(--popover-foreground);
+    border-bottom: 1px solid #9b201e;
+  }
   .cardContent {
     padding: 8px;
-    background: var(--background);
+    background-color: var(--backgroundcontent);
     color: var(--foreground);
     white-space: pre-line;
   }
@@ -37,9 +60,24 @@
     align-items: center;
     padding: 2px;
     background: var(--footer-bg);
+    border-top: 1px solid;
+  }
+  .cardFooterOK {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2px;
+    background: var(--footer-bg);
     border-top: 1px solid var(--border);
   }
-  
+  .cardFooterMarked {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 2px;
+    background: var(--footer-bg);
+    border-top: 1px solid #9b201e;
+  }
   .leftSide {
     display: flex;
     align-items: center;
@@ -191,4 +229,11 @@
 
 .summaryClickable {
   cursor: pointer;
+}
+.tagInput {
+  border: 1px solid var(--search-border);
+  outline: none;
+  background-color: var(--backgroundcontent);
+  border-radius: 2px;
+  font-size: 0.85rem;
 }

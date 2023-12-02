@@ -18,7 +18,9 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
   const [currentStatus, setCurrentStatus] = useState(conversation.status);
   const summaryClass = conversation.status === 'OK' ? styles.greyText : '';
   const userNameClass = conversation.status === 'OK' ? styles.userNameOk : styles.userName;
-  const conversationCardClass = conversation.status === 'Marked' ? styles.conversationCardMarked : styles.conversationCard;
+  const conversationCardClass = conversation.status === 'Marked' ? styles.conversationCardMarked : conversation.status === 'OK' ? styles.conversationCardOK : styles.conversationCard;
+  const conversationHeaderClass = conversation.status === 'Marked' ? styles.cardHeaderMarked : conversation.status === 'OK' ? styles.cardHeaderOK : styles.cardHeader;
+  const conversationFooterClass = conversation.status === 'Marked' ? styles.cardFooterMarked : conversation.status === 'OK' ? styles.cardFooterOK : styles.cardFooter;
   const [tags, setTags] = useState(conversation.tags);
   const onTagsUpdate = useCallback((newTags: string[]) => {
     setTags(newTags);
@@ -36,7 +38,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
 
   return (
     <div className={conversationCardClass}>
-      <div className={styles.cardHeader}>
+      <div className={conversationHeaderClass}>
         <div className={styles.leftSide}>
           {currentStatus === 'Not Read' ? (
             <Bookmark width={18} />
@@ -75,7 +77,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
           </span>)}
       </div>
 
-      <div className={styles.cardFooter}>
+      <div className={conversationFooterClass}>
         <span className={styles.userRating}>
           {conversation.sentiment === 'Positive' ? (
             <Smile width={18} color='green' />
