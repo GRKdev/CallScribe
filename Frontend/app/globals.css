@@ -129,6 +129,16 @@
   padding: 0 1rem;
   margin-left: 250px;
 }
+.footer {
+  margin-top: 2rem;
+  padding: 0 1rem;
+  margin-left: 250px;
+  border: 2px solid var(--border);
+  border-radius: 20px;
+  background-color: var(--backgroundcontent);
+  margin-bottom: 10px;
+
+}
 
 .no-conversations-container {
   display: flex;

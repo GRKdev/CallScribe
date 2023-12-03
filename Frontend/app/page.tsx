@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="conversation-cards">
+      <div className="footer">
         <Footer />
       </div>
     </div>
