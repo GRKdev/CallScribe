@@ -40,6 +40,7 @@
     --speaker1-foreground: #000;
     --navbar-width: 285px;
     --navbar-shrunk-width: 24px;
+    --conversation-card-widht: 250px;
     --icon-fill-light: #000000;
     --icon-fill-dark: #ffffff;
     --icon-fill: var(--icon-stroke-light)
@@ -82,6 +83,8 @@
     --speaker1-foreground: #fff; 
     --navbar-width: 285px;
     --navbar-shrunk-width: 24px;
+    --conversation-card-widht: 250px;
+
     --icon-fill: var(--icon-fill-dark);
 
   }
@@ -90,8 +93,9 @@
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground flex flex-col min-h-screen;
   }
 }
 
@@ -100,45 +104,58 @@
   background-size: var(--background-size);
 }
 
-.navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: var(--navbar-width);
-  height: 100vh;
-  overflow-y: auto;
-  background-color: var(--header-bg);
-  transition: width 0.3s;
-}
-
-.navbar.shrunk {
-  width: var(--navbar-shrunk-width);
-}
-
 .container {
+  @apply flex flex-col flex-1;
   transition: margin-left 0.3s;
-  
 }
 
 .container.shrunk {
   margin-left: var(--navbar-shrunk-width);
 }
 
-.conversation-cards {
-  margin-top: 1rem;
-  padding: 0 1rem;
-  margin-left: 250px;
-}
 .footer {
   margin-top: 2rem;
-  padding: 0 1rem;
-  margin-left: 250px;
+  /* padding: 0 1rem; */
+  margin-left: 250px; 
   border: 2px solid var(--border);
   border-radius: 20px;
-  background-color: var(--backgroundcontent);
+  background-color: var(--backgroundcontent); 
   margin-bottom: 10px;
-
 }
+
+/* Navbar styles */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: var(--navbar-width);
+  overflow-y: auto;
+  background-color: var(--header-bg); 
+  transition: width 0.3s;
+}
+
+.navbar.shrunk {
+  width: var(--navbar-shrunk-width);
+  
+}
+
+.main-content {
+  @apply flex flex-1;
+}
+
+.conversation-cards {
+  @apply flex-grow;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  margin-left: var(--conversation-card-widht); 
+  transition: margin-left 0.3s; 
+}
+
+.container.shrunk .conversation-cards {
+  margin-left: var(--navbar-shrunk-width); 
+}
+
 
 .no-conversations-container {
   display: flex;
@@ -252,16 +269,25 @@
   .navbar.shrunk {
     width: 100%;
   }
-
+  .container:not(.shrunk) .conversation-cards {
+    padding-left: 0; /* Make room for the expanded navbar */
+  }
   .container,
   .container.shrunk {
     margin-left: 0;
-    margin-top: 60px;
+    margin-top: 20px;
   }
 
   .conversation-cards {
     padding: 0 0%;
     margin-left: 0;
+  }
+  .footer {
+    margin-left: 0;
+    border: 2px solid var(--border);
+    border-radius: 20px;
+    background-color: var(--backgroundcontent);
+    margin-bottom: 10px;
   }
 }
   @media (max-width: 768px) {

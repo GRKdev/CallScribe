@@ -7,7 +7,6 @@ import useSearchFilter from '@/hooks/useSearchFilter';
 import useDebounce from '@/hooks/useDebounce';
 import { ConversationType, SentimentCounts } from '@/types/conversation';
 import { calculateConversationsCounts } from '@/hooks/ConversationCount';
-import Footer from '@/components/ui/Footer';
 
 const calculateSentimentCounts = (conversations: ConversationType[]): SentimentCounts => {
   return conversations.reduce(
@@ -86,25 +85,25 @@ const HomePage: React.FC = () => {
         sentimentFilter={sentimentFilter}
         onSentimentFilterChange={handleSentimentFilterChange}
       />
-      <div className="conversation-cards">
-        {handleFilteredConversations.length > 0 ? (
-          handleFilteredConversations.map((conversation) => (
-            <ConversationCard
-              key={conversation.conversation_id}
-              conversation={conversation}
-              onStatusUpdate={handleStatusUpdate}
-            />
-          ))
-        ) : (
-          <div className="no-conversations-container">
-            <div className="no-conversations">
-              There are no conversations.
+      <div className="main-content">
+
+        <div className='conversation-cards'>
+          {handleFilteredConversations.length > 0 ? (
+            handleFilteredConversations.map((conversation) => (
+              <ConversationCard
+                key={conversation.conversation_id}
+                conversation={conversation}
+                onStatusUpdate={handleStatusUpdate}
+              />
+            ))
+          ) : (
+            <div className="no-conversations-container">
+              <div className="no-conversations">
+                There are no conversations.
+              </div>
             </div>
-          </div>
-        )}
-      </div>
-      <div className="footer">
-        <Footer />
+          )}
+        </div>
       </div>
     </div>
   );
