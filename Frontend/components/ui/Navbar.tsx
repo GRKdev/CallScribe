@@ -2,27 +2,10 @@ import React from 'react';
 import { ModeToggle } from "@/components/ui/toggle";
 import { CalendarForm } from '@/hooks/calendar';
 import SentimentChart from "@/hooks/SentimentChart";
-import { SentimentCounts, ConversationCounts } from '@/types/conversation';
 import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX, Meh, Frown, Smile } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import Logo from '@/components/ui/Logo';
 import { NavbarProps } from '@/types/conversation';
-
-// type NavbarProps = {
-//     searchTerm: string;
-//     onSearchChange: (value: string) => void;
-//     timeFilter: string;
-//     onTimeFilterChange: (filter: string) => void;
-//     onDateSelect: (date: Date | null) => void;
-//     sentimentCounts: SentimentCounts;
-//     isNavShrunk: boolean;
-//     onToggleNav: () => void;
-//     statusFilter: string;
-//     onStatusFilterChange: (filter: string) => void;
-//     conversationCounts: ConversationCounts;
-//     sentimentFilter: string;
-//     onSentimentFilterChange: (filter: string) => void;
-// };
 
 const Navbar: React.FC<NavbarProps> = ({
     searchTerm,
