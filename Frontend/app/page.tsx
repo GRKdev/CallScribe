@@ -1,22 +1,12 @@
 'use client'
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import Navbar from '@/components/ui/Navbar';
 import ConversationCard from '@/components/ui/conversation';
 import useFetchConversations from '@/hooks/useFetchConversations';
 import useSearchFilter from '@/hooks/useSearchFilter';
 import useDebounce from '@/hooks/useDebounce';
-import { ConversationType, SentimentCounts } from '@/types/conversation';
 import { calculateConversationsCounts } from '@/hooks/ConversationCount';
-
-const calculateSentimentCounts = (conversations: ConversationType[]): SentimentCounts => {
-  return conversations.reduce(
-    (counts, conversation) => {
-      counts[conversation.sentiment.toLowerCase() as keyof SentimentCounts]++;
-      return counts;
-    },
-    { positive: 0, negative: 0, neutral: 0 }
-  );
-};
+import { calculateSentimentCounts } from '@/hooks/sentimentCount';
 
 const HomePage: React.FC = () => {
   const [timeFilter, setTimeFilter] = useState<string>('24h');
@@ -31,16 +21,7 @@ const HomePage: React.FC = () => {
   const [allConversations] = useFetchConversations(timeFilter, customDate, statusFilter, sentimentFilter);
   const filteredConversations = useSearchFilter(debouncedSearchTerm, allConversations);
   const conversationCounts = calculateConversationsCounts(filteredConversations);
-
-  const [filteredSentimentCounts, setFilteredSentimentCounts] = useState<SentimentCounts>({
-    positive: 0,
-    negative: 0,
-    neutral: 0,
-  });
-
-  useEffect(() => {
-    setFilteredSentimentCounts(calculateSentimentCounts(filteredConversations));
-  }, [filteredConversations]);
+  const sentimentCounts = calculateSentimentCounts(filteredConversations);
 
   const handleCustomDateChange = (date: Date | null) => {
     setTimeFilter('custom');
@@ -76,7 +57,7 @@ const HomePage: React.FC = () => {
         timeFilter={timeFilter}
         onTimeFilterChange={setTimeFilter}
         onDateSelect={handleCustomDateChange}
-        sentimentCounts={filteredSentimentCounts}
+        sentimentCounts={sentimentCounts}
         isNavShrunk={isNavShrunk}
         onToggleNav={toggleNavbar}
         conversationCounts={conversationCounts}
