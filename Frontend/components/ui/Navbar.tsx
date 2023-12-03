@@ -5,24 +5,24 @@ import SentimentChart from "@/hooks/SentimentChart";
 import { SentimentCounts, ConversationCounts } from '@/types/conversation';
 import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX, Meh, Frown, Smile } from 'lucide-react';
 import { Button } from "@/components/ui/button"
-import CallLogo from "@/components/ui/ccLogo"
 import Logo from '@/components/ui/Logo';
+import { NavbarProps } from '@/types/conversation';
 
-type NavbarProps = {
-    searchTerm: string;
-    onSearchChange: (value: string) => void;
-    timeFilter: string;
-    onTimeFilterChange: (filter: string) => void;
-    onDateSelect: (date: Date | null) => void;
-    sentimentCounts: SentimentCounts;
-    isNavShrunk: boolean;
-    onToggleNav: () => void;
-    statusFilter: string;
-    onStatusFilterChange: (filter: string) => void;
-    conversationCounts: ConversationCounts;
-    sentimentFilter: string;
-    onSentimentFilterChange: (filter: string) => void;
-};
+// type NavbarProps = {
+//     searchTerm: string;
+//     onSearchChange: (value: string) => void;
+//     timeFilter: string;
+//     onTimeFilterChange: (filter: string) => void;
+//     onDateSelect: (date: Date | null) => void;
+//     sentimentCounts: SentimentCounts;
+//     isNavShrunk: boolean;
+//     onToggleNav: () => void;
+//     statusFilter: string;
+//     onStatusFilterChange: (filter: string) => void;
+//     conversationCounts: ConversationCounts;
+//     sentimentFilter: string;
+//     onSentimentFilterChange: (filter: string) => void;
+// };
 
 const Navbar: React.FC<NavbarProps> = ({
     searchTerm,
@@ -48,10 +48,6 @@ const Navbar: React.FC<NavbarProps> = ({
             ) : (
                 <>  <header className="flex justify-center items-center align-middle p-1 gap-2 pt-4">
                     <Logo />
-                    {/* <div className="logo-icon">
-                        <CallLogo />
-
-                    </div> */}
                 </header>
 
                     <section className="searchContainer flex justify-between p-4">
