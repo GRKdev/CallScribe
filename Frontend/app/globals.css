@@ -143,6 +143,8 @@
   padding: 0 1rem;
   border: 2px solid var(--border);
   border-radius: 8px;
+  background-color: var(--backgroundcontent);
+  margin-bottom: 250px;
 }
 
 .chartBox {
@@ -258,3 +260,10 @@
     }
   }
 
+  #logo-icon path {
+    fill: var(--icon-fill);
+  }
+  
+  #logo-icon:hover path {
+    fill:rgb(153, 15, 15);
+  }

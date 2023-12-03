@@ -7,6 +7,7 @@ import useSearchFilter from '@/hooks/useSearchFilter';
 import useDebounce from '@/hooks/useDebounce';
 import { ConversationType, SentimentCounts } from '@/types/conversation';
 import { calculateConversationsCounts } from '@/hooks/ConversationCount';
+import Footer from '@/components/ui/Footer';
 
 const calculateSentimentCounts = (conversations: ConversationType[]): SentimentCounts => {
   return conversations.reduce(
@@ -101,6 +102,9 @@ const HomePage: React.FC = () => {
             </div>
           </div>
         )}
+      </div>
+      <div className="conversation-cards">
+        <Footer />
       </div>
     </div>
   );

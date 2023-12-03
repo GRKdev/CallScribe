@@ -6,6 +6,7 @@ import { SentimentCounts, ConversationCounts } from '@/types/conversation';
 import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX, Meh, Frown, Smile } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import CallLogo from "@/components/ui/ccLogo"
+import Logo from '@/components/ui/Logo';
 
 type NavbarProps = {
     searchTerm: string;
@@ -45,11 +46,12 @@ const Navbar: React.FC<NavbarProps> = ({
             {isNavShrunk ? (
                 <button style={{ justifyContent: 'center' }} onClick={onToggleNav}><ArrowRightFromLine /></button>
             ) : (
-                <>  <header className="flex justify-center items-center p-1 gap-2">
-                    <h1 className="text-center text-2xl font-bold">CallScribe</h1>
-                    <div className="logo-icon">
+                <>  <header className="flex justify-center items-center align-middle p-1 gap-2 pt-4">
+                    <Logo />
+                    {/* <div className="logo-icon">
                         <CallLogo />
-                    </div>
+
+                    </div> */}
                 </header>
 
                     <section className="searchContainer flex justify-between p-4">
