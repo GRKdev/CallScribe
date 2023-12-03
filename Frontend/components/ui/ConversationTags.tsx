@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/ConversationCard.module.css';
-import { MinusCircle, PlusCircleIcon, BookmarkX, Trash2 } from 'lucide-react';
+import { MinusCircle, PlusCircleIcon } from 'lucide-react';
 
 
 interface ConversationTagsProps {

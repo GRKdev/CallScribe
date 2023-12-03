@@ -1,7 +1,7 @@
 import React from 'react';
 import { ModeToggle } from "@/components/ui/toggle";
-import { CalendarForm } from '@/hooks/calendar';
-import SentimentChart from "@/hooks/SentimentChart";
+import { CalendarForm } from '@/components/ui/calendarForm';
+import SentimentChart from "@/components/ui/SentimentChart";
 import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, BookmarkX, Meh, Frown, Smile } from 'lucide-react';
 import { Button } from "@/components/ui/button"
 import Logo from '@/components/ui/Logo';

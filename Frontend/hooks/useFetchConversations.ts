@@ -1,8 +1,8 @@
 'use client'
 import { useState, useEffect } from 'react';
 import { ConversationType, SentimentCounts, ConversationCounts  } from '@/types/conversation';
-import { calculateSentimentCounts } from '@/hooks/sentimentCount';
-import { calculateConversationsCounts } from './ConversationCount';
+import { calculateSentimentCounts } from '@/utils/sentimentCount';
+import { calculateConversationsCounts } from '../utils/ConversationCount';
 
 export const useFetchConversations = (
   timeFilter: string,

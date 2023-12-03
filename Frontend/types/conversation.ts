@@ -43,4 +43,13 @@ export type SpeakerType = {
     conversationCounts: ConversationCounts;
     sentimentFilter: string;
     onSentimentFilterChange: (filter: string) => void;
+    customDate: Date | null;
+};
+
+export type UseConversationsParams = {
+  searchTerm: string;
+  timeFilter: string;
+  statusFilter: string;
+  sentimentFilter: string;
+  customDate: Date | null;
 };

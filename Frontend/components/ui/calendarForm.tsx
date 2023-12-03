@@ -55,9 +55,9 @@ export function CalendarForm({ onDateSelect }: CalendarFormProps) {
                                     <FormControl>
                                         <Button
                                             variant={"outline"}
-                                            className={cn("w-[240px] pl-2 text-left font-normal")}
+                                            className={cn("pl-2 text-left font-normal")}
                                         >
-                                            <CalendarIcon className="ml-auto h-4 w-4 opacity-90" />
+                                            <CalendarIcon className=" h-4 w-4 opacity-90" />
                                         </Button>
                                     </FormControl>
                                 </PopoverTrigger>

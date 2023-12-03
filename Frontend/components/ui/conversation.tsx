@@ -5,8 +5,8 @@ import styles from '@/styles/ConversationCard.module.css';
 import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
 import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
 import FormatDateTime from '@/components/ui/FormatDateTime';
-import ConversationActions from '@/hooks/ConversationActions';
-import ConversationTags from '@/hooks/ConversationTags';
+import ConversationActions from '@/utils/ConversationActions';
+import ConversationTags from '@/components/ui/ConversationTags';
 
 interface ConversationCardProps {
   conversation: ConversationType;
