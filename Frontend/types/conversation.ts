@@ -53,3 +53,8 @@ export type UseConversationsParams = {
   sentimentFilter: string;
   customDate: Date | null;
 };
+
+export type ConversationCardProps = {
+  conversation: ConversationType;
+  onStatusUpdate: (conversationId: string, newStatus: string) => void;
+}

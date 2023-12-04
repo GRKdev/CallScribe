@@ -126,7 +126,7 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
         )}
         {!isAdding && (
           <button onClick={handlePlusClick}>
-            <PlusCircleIcon height={18} />
+            <PlusCircleIcon height={18} color='gray' />
           </button>
         )}
       </div>

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useCallback } from 'react';
-import { ConversationType } from '@/types/conversation';
+import { ConversationCardProps } from '@/types/conversation';
 import styles from '@/styles/ConversationCard.module.css';
 import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
 import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
@@ -8,10 +8,6 @@ import FormatDateTime from '@/components/ui/FormatDateTime';
 import ConversationActions from '@/utils/ConversationActions';
 import ConversationTags from '@/components/ui/ConversationTags';
 
-interface ConversationCardProps {
-  conversation: ConversationType;
-  onStatusUpdate: (conversationId: string, newStatus: string) => void;
-}
 
 const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onStatusUpdate }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -58,6 +54,9 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
       <div className={styles.cardContent}>
         {isExpanded ? (
           <>
+            <div onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass} pb-2`}>
+              {conversation.summary}
+            </div>
             <div className='pb-2'>
               <TextWithLineBreaks
                 text={conversation.all_text}
