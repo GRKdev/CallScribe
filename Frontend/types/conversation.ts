@@ -57,4 +57,13 @@ export type UseConversationsParams = {
 export type ConversationCardProps = {
   conversation: ConversationType;
   onStatusUpdate: (conversationId: string, newStatus: string) => void;
+  currentSummary: string;
+  onSummaryUpdate: (conversationId: string, newSummary: string) => void;
+}
+
+export type ConversationTagsProps = {
+  conversationId: string;
+  currentTags: string[];
+  onTagsUpdate: (newTags: string[]) => void;
+
 }

@@ -193,6 +193,14 @@
   outline: gray;
 }
 
+.summaryContainer textarea {
+  width: 100%;
+  height: 75px;
+  padding: 4px;
+  border: 2px solid var(--search-border);
+  border-radius: 8px;
+  outline: gray;
+}
 .filterButtons {
   display: flex;
   gap: 4px;

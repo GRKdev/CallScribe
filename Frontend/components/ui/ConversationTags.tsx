@@ -2,14 +2,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/ConversationCard.module.css';
 import { MinusCircle, PlusCircleIcon } from 'lucide-react';
+import { ConversationTagsProps } from '@/types/conversation';
 
-
-interface ConversationTagsProps {
-  conversationId: string;
-  currentTags: string[];
-  onTagsUpdate: (newTags: string[]) => void;
-
-}
 
 const ConversationTags: React.FC<ConversationTagsProps> = ({
   conversationId,

@@ -7,24 +7,34 @@ import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
 import FormatDateTime from '@/components/ui/FormatDateTime';
 import ConversationActions from '@/utils/ConversationActions';
 import ConversationTags from '@/components/ui/ConversationTags';
+import UpdateSummary from '@/utils/UpdateSummary';
 
 
-const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onStatusUpdate }) => {
+const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onStatusUpdate, onSummaryUpdate }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [currentStatus, setCurrentStatus] = useState(conversation.status);
+  const handleExpandClick = useCallback(() => {
+    setIsExpanded((prevState) => !prevState);
+  }, []);
   const summaryClass = conversation.status === 'OK' ? styles.greyText : '';
   const userNameClass = conversation.status === 'OK' ? styles.userNameOk : styles.userName;
   const conversationCardClass = conversation.status === 'Marked' ? styles.conversationCardMarked : conversation.status === 'OK' ? styles.conversationCardOK : styles.conversationCard;
   const conversationHeaderClass = conversation.status === 'Marked' ? styles.cardHeaderMarked : conversation.status === 'OK' ? styles.cardHeaderOK : styles.cardHeader;
   const conversationFooterClass = conversation.status === 'Marked' ? styles.cardFooterMarked : conversation.status === 'OK' ? styles.cardFooterOK : styles.cardFooter;
+
   const [tags, setTags] = useState(conversation.tags);
   const onTagsUpdate = useCallback((newTags: string[]) => {
     setTags(newTags);
   }, []);
 
-  const handleExpandClick = useCallback(() => {
-    setIsExpanded((prevState) => !prevState);
-  }, []);
+  const [currentStatus, setCurrentStatus] = useState(conversation.status);
+
+  const [currentSummary, setCurrentSummary] = useState(conversation.summary);
+
+
+  const handleSummaryUpdate = useCallback((newSummary: string) => {
+    setCurrentSummary(newSummary);
+    onSummaryUpdate(conversation.conversation_id, newSummary);
+  }, [conversation.conversation_id, onSummaryUpdate]);
 
   const handleStatusUpdate = useCallback((newStatus: string) => {
     setCurrentStatus(newStatus);
@@ -57,6 +67,11 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
             <div onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass} pb-2`}>
               {conversation.summary}
             </div>
+            <UpdateSummary
+              conversationId={conversation.conversation_id}
+              currentSummary={currentSummary}
+              onSummaryUpdate={handleSummaryUpdate}
+            />
             <div className='pb-2'>
               <TextWithLineBreaks
                 text={conversation.all_text}
@@ -73,6 +88,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
         ) : (
           <span onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass}`}>
             {conversation.summary}
+
           </span>)}
       </div>
 
