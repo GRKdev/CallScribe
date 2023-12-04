@@ -106,7 +106,6 @@
 
 .container {
   @apply flex flex-col flex-1;
-  transition: margin-left 0.3s;
 }
 
 .container.shrunk {
@@ -274,7 +273,11 @@
   .container:not(.shrunk) .conversation-cards {
     padding-left: 0; 
   }
-  .container,
+  .container{
+    @apply flex flex-col flex-1;
+    margin-left: 0;
+    margin-top: 10px;
+  }
   .container.shrunk {
     margin-left: 0;
     margin-top: 20px;

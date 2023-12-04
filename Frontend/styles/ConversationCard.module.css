@@ -1,23 +1,23 @@
 .conversationCard {
     border: 2px solid;
     border-radius: var(--radius);
-    margin: 16px;
     overflow: hidden;
     background: var(--card);
+    margin-bottom: 15px;
   }
   
   .conversationCardMarked {
     border: 2px solid #9b201e;
     border-radius: var(--radius);
-    margin: 16px;
     overflow: hidden;
+    margin-bottom: 15px;
     background: var(--card);
   }
   .conversationCardOK {
     border: 2px solid var(--border);
     border-radius: var(--radius);
-    margin: 16px;
     overflow: hidden;
+    margin-bottom: 15px;
     background: var(--card);
   }
   .cardHeader {

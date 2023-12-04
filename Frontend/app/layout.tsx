@@ -29,9 +29,7 @@ export default function RootLayout({
         >
           <div className="container">
             <SearchFilterProvider>
-              <div className="main-content">
-                {children}
-              </div>
+              {children}
             </SearchFilterProvider>
             <Footer />
           </div>
