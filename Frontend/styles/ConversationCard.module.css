@@ -96,6 +96,7 @@
   .userName {
     margin-left: 4px; 
     font-weight: bold;
+    cursor: pointer;
 
   }
 
@@ -104,6 +105,8 @@
     color: gray;
     font-weight: bold;
     font-style: italic;
+    cursor: pointer;
+
   }
 
   .userRating {

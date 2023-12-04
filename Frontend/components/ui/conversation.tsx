@@ -43,7 +43,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
           ) : (
             <BookmarkX width={18} color='red' />
           )}
-          <span className={userNameClass}>{conversation.user}</span>
+          <span onClick={handleExpandClick} className={userNameClass}>{conversation.user}</span>
         </div>
 
         <div className={styles.rightSide}>

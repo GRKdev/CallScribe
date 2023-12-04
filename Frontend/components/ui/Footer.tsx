@@ -4,7 +4,7 @@ import LogoIAND from "./LogoIAND";
 export default function Footer() {
     return (
         <footer className="footer">
-            <div className="container px-5 py-4 mx-auto flex items-center sm:flex-row flex-col">
+            <div className="container px-4 py-3 mx-auto flex items-center sm:flex-row flex-col">
                 <a href="https://iand.dev" target="_blank" className="flex title-font font-medium items-center md:justify-start justify-center" >
 
                     <LogoIAND />
