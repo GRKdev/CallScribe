@@ -2,7 +2,7 @@
 import React, { useState, useCallback } from 'react';
 import { ConversationCardProps } from '@/types/conversation';
 import styles from '@/styles/ConversationCard.module.css';
-import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX } from 'lucide-react';
+import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, BookmarkCheck, BookmarkX, Pencil, Undo2 } from 'lucide-react';
 import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
 import FormatDateTime from '@/components/ui/FormatDateTime';
 import ConversationActions from '@/utils/ConversationActions';
@@ -15,6 +15,12 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
   const handleExpandClick = useCallback(() => {
     setIsExpanded((prevState) => !prevState);
   }, []);
+
+  const [isExpandedEdit, setIsExpandedEdit] = useState(false);
+  const handleExpandClickEdit = useCallback(() => {
+    setIsExpandedEdit((prevState) => !prevState);
+  }, []);
+
   const summaryClass = conversation.status === 'OK' ? styles.greyText : '';
   const userNameClass = conversation.status === 'OK' ? styles.userNameOk : styles.userName;
   const conversationCardClass = conversation.status === 'Marked' ? styles.conversationCardMarked : conversation.status === 'OK' ? styles.conversationCardOK : styles.conversationCard;
@@ -44,7 +50,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
 
   return (
     <div className={conversationCardClass}>
-      <div className={conversationHeaderClass}>
+      <div className={conversationHeaderClass} onClick={handleExpandClick}>
         <div className={styles.leftSide}>
           {currentStatus === 'Not Read' ? (
             <Bookmark width={18} />
@@ -53,7 +59,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
           ) : (
             <BookmarkX width={18} color='red' />
           )}
-          <span onClick={handleExpandClick} className={userNameClass}>{conversation.user}</span>
+          <span className={userNameClass}>{conversation.user}</span>
         </div>
 
         <div className={styles.rightSide}>
@@ -64,14 +70,27 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
       <div className={styles.cardContent}>
         {isExpanded ? (
           <>
-            <div onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass} pb-2`}>
-              {conversation.summary}
+            <div className={`${summaryClass} pb-2`}>
+              {isExpandedEdit ? (
+                <div className="flexContainer">
+                  <UpdateSummary
+                    conversationId={conversation.conversation_id}
+                    currentSummary={currentSummary}
+                    onSummaryUpdate={handleSummaryUpdate}
+                  />
+                  <div className="undoIconContainer">
+                    <Undo2 onClick={handleExpandClickEdit} />
+                  </div>
+                </div>
+
+              ) : (
+                <div className='flex justify-between pr-4'>
+                  {conversation.summary}
+                  <Pencil width="15" onClick={handleExpandClickEdit} className={`${styles.summaryClickable}`} />
+                </div>
+              )}
             </div>
-            <UpdateSummary
-              conversationId={conversation.conversation_id}
-              currentSummary={currentSummary}
-              onSummaryUpdate={handleSummaryUpdate}
-            />
+
             <div className='pb-2'>
               <TextWithLineBreaks
                 text={conversation.all_text}
@@ -88,7 +107,6 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
         ) : (
           <span onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass}`}>
             {conversation.summary}
-
           </span>)}
       </div>
 

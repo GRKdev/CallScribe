@@ -1,14 +1,9 @@
 import React from 'react';
-import styles from '@/styles/ConversationCard.module.css';
-import { Pencil, SendHorizontal } from 'lucide-react';
+import { Undo2, SendHorizontal } from 'lucide-react';
 import { Button } from "@/components/ui/button"
+import { UpdateSummaryProps } from '@/types/conversation';
 
-interface UpdateSummaryProps {
-    conversationId: string;
-    onSummaryUpdate: (newStatus: string) => void;
-    currentSummary: string;
 
-}
 const UpdateSummary: React.FC<UpdateSummaryProps> = ({ conversationId, onSummaryUpdate, currentSummary }) => {
 
     const updateSummary = async (newSummary: string) => {
@@ -30,28 +25,26 @@ const UpdateSummary: React.FC<UpdateSummaryProps> = ({ conversationId, onSummary
         }
     }
 
-    return (<>
-        <div >
-            <section className="summaryContainer flex justify-between p-4">
+    return (
+        <div className="updateContainer">
+            <section className="summaryContainer p-4">
                 <textarea
-                    className="pl-2 summaryContainer"
+                    className="summaryTextarea"
                     value={currentSummary}
                     onChange={(e) => updateSummary(e.target.value)}
                     placeholder={currentSummary}
                 />
             </section>
-            <div className="text-center pb-2">
+            <div className="buttonContainer pb-2">
                 <Button
-
-                    variant="secondary"
+                    variant="default"
                     onClick={() => updateSummary(currentSummary)}
                 >
-                    Update Summary<SendHorizontal width={15} />
+                    Update Summary
                 </Button>
             </div>
-
         </div>
-    </>)
+    )
 }
 
 export default UpdateSummary;

@@ -1,5 +1,5 @@
 .conversationCard {
-    border: 2px solid;
+    border: 1px solid;
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--card);
@@ -7,14 +7,14 @@
   }
   
   .conversationCardMarked {
-    border: 2px solid #9b201e;
+    border: 1px solid #9b201e;
     border-radius: var(--radius);
     overflow: hidden;
     margin-bottom: 15px;
     background: var(--card);
   }
   .conversationCardOK {
-    border: 2px solid var(--border);
+    border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
     margin-bottom: 15px;
@@ -28,6 +28,7 @@
     background: var(--header-bg); 
     color: var(--popover-foreground);
     border-bottom: 1px solid;
+    cursor: pointer;
   }
   .cardHeaderOK {
     display: flex;
@@ -37,6 +38,7 @@
     background: var(--header-bg); 
     color: var(--popover-foreground);
     border-bottom: 1px solid var(--border);
+    cursor: pointer;
   }
   .cardHeaderMarked {
     display: flex;
@@ -46,6 +48,7 @@
     background: var(--header-bg); 
     color: var(--popover-foreground);
     border-bottom: 1px solid #9b201e;
+    cursor: pointer;
   }
   .cardContent {
     padding: 8px;

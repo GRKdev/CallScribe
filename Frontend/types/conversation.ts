@@ -67,3 +67,10 @@ export type ConversationTagsProps = {
   onTagsUpdate: (newTags: string[]) => void;
 
 }
+
+export interface UpdateSummaryProps {
+  conversationId: string;
+  onSummaryUpdate: (newStatus: string) => void;
+  currentSummary: string;
+
+}
