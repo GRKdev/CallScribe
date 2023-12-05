@@ -98,7 +98,7 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
         <div key={tag} className={styles.tag} onClick={() => setSelectedTag(tag)}>
           {tag}
           {selectedTag === tag && (
-            <button onClick={() => removeTag(tag)} >
+            <button onClick={() => removeTag(tag)} title="Remove Tag">
               <MinusCircle height={10} color='red' />
             </button>
           )}
@@ -119,7 +119,7 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
 
         )}
         {!isAdding && (
-          <button onClick={handlePlusClick}>
+          <button onClick={handlePlusClick} title="Add Tag">
             <PlusCircleIcon height={18} color='gray' />
           </button>
         )}

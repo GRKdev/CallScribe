@@ -32,7 +32,7 @@ const UpdateSummary: React.FC<UpdateSummaryProps> = ({ conversationId, onSummary
                     className="summaryTextarea"
                     value={currentSummary}
                     onChange={(e) => updateSummary(e.target.value)}
-                    placeholder={currentSummary}
+                    placeholder="Write a summary of the conversation here..."
                 />
             </section>
             <div className="buttonContainer pb-2">

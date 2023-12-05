@@ -206,6 +206,7 @@
   padding: 4px; 
 }
 
+
 .summaryTextarea {
   height: 100%; 
   width: 100%; 
@@ -234,8 +235,6 @@
   cursor: pointer;
   margin-left: 8px; 
 }
-
-
 
 
 .filterButtons {
@@ -350,4 +349,14 @@
   
   #logo-icon:hover path {
     fill:rgb(153, 15, 15);
+  }
+
+  .icon_edit {
+    color: var(--icon-fill);
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+  .icon_edit:hover {
+    color:rgb(153, 15, 15);
   }

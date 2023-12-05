@@ -70,7 +70,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
       <div className={styles.cardContent}>
         {isExpanded ? (
           <>
-            <div className={`${summaryClass} pb-2`}>
+            <div className={` pb-2`}>
               {isExpandedEdit ? (
                 <div className="flexContainer">
                   <UpdateSummary
@@ -79,14 +79,14 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
                     onSummaryUpdate={handleSummaryUpdate}
                   />
                   <div className="undoIconContainer">
-                    <Undo2 onClick={handleExpandClickEdit} />
+                    <Undo2 className="" onClick={handleExpandClickEdit} />
                   </div>
                 </div>
 
               ) : (
-                <div className='flex justify-between pr-4'>
+                <div>
                   {conversation.summary}
-                  <Pencil width="15" onClick={handleExpandClickEdit} className={`${styles.summaryClickable}`} />
+                  <a className='flex justify-end ' title="Edit Summary" onClick={handleExpandClickEdit}><Pencil className="icon_edit" /></a>
                 </div>
               )}
             </div>
@@ -113,11 +113,11 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
       <div className={conversationFooterClass}>
         <span className={styles.userRating}>
           {conversation.sentiment === 'Positive' ? (
-            <Smile width={18} color='green' />
+            <Smile width={22} color='green' />
           ) : conversation.sentiment === 'Neutral' ? (
-            <Meh width={18} />
+            <Meh width={22} />
           ) : (
-            <Frown width={18} color='red' />
+            <Frown width={22} color='red' />
           )}
         </span>
         <div className={styles.tagContainer}>
