@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/ConversationCard.module.css';
-import { MinusCircle, PlusCircleIcon } from 'lucide-react';
+import { Trash2, PlusCircleIcon } from 'lucide-react';
 import { ConversationTagsProps } from '@/types/conversation';
 
 
@@ -16,11 +16,20 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
   const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleOutsideClick = (event: MouseEvent) => {
+
     if (inputRef.current && !inputRef.current.contains(event.target as Node)) {
       setIsAdding(false);
     }
-  };
 
+
+    let isClickInsideTag = currentTags.some(tag =>
+      document.getElementById(`tag-${tag}`)?.contains(event.target as Node)
+    );
+
+    if (!isClickInsideTag) {
+      setSelectedTag(null);
+    }
+  };
   useEffect(() => {
     document.addEventListener('mousedown', handleOutsideClick);
     return () => {
@@ -95,11 +104,11 @@ const ConversationTags: React.FC<ConversationTagsProps> = ({
   return (
     <div className={styles.tagContainer}>
       {currentTags.map((tag) => (
-        <div key={tag} className={styles.tag} onClick={() => setSelectedTag(tag)}>
+        <div key={tag} id={`tag-${tag}`} className={styles.tag} onClick={() => setSelectedTag(tag)}>
           {tag}
           {selectedTag === tag && (
             <button onClick={() => removeTag(tag)} title="Remove Tag">
-              <MinusCircle height={10} color='red' />
+              <Trash2 height={12} color='red' />
             </button>
           )}
         </div>

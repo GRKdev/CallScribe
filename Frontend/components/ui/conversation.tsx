@@ -6,7 +6,7 @@ import { ArrowDownFromLine, ArrowUpFromLine, Meh, Frown, Smile, Bookmark, Bookma
 import TextWithLineBreaks from '@/components/ui/TextWithLineBreaks';
 import FormatDateTime from '@/components/ui/FormatDateTime';
 import ConversationActions from '@/utils/ConversationActions';
-import ConversationTags from '@/components/ui/ConversationTags';
+import ConversationTags from '@/utils/ConversationTags';
 import UpdateSummary from '@/utils/UpdateSummary';
 
 
