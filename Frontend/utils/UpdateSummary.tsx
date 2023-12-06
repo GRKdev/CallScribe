@@ -35,12 +35,12 @@ const UpdateSummary: React.FC<UpdateSummaryProps> = ({ conversationId, onSummary
                     placeholder="Write a summary of the conversation here..."
                 />
             </section>
-            <div className="buttonContainer pb-2">
+            <div className="buttonContainer2 pb-2">
                 <Button
-                    variant="default"
+                    variant="outline"
                     onClick={() => updateSummary(currentSummary)}
                 >
-                    Update Summary
+                    Update
                 </Button>
             </div>
         </div>
