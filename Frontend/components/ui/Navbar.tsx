@@ -158,7 +158,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
                     <ul className="tagConversationContainer p-2">
                         {sortedTags.map(([tag, count]) => (
-                            <li key={tag} className='tagConversation'>{tag}: <span className="tag-count">{count}</span></li>
+                            <li key={tag} className='tagConversationTagCount'>{tag}: <span className="tag-count">{count}</span></li>
                         ))}
                     </ul>
 
