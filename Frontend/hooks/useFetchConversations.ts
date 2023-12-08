@@ -1,15 +1,17 @@
 'use client'
 import { useState, useEffect } from 'react';
-import { ConversationType, SentimentCounts, ConversationCounts  } from '@/types/conversation';
+import { ConversationType, SentimentCounts, ConversationCounts, TagCounts  } from '@/types/conversation';
 import { calculateSentimentCounts } from '@/utils/sentimentCount';
 import { calculateConversationsCounts } from '../utils/ConversationCount';
+import { calculateTagCounts } from '../utils/tagCount';
+
 
 export const useFetchConversations = (
   timeFilter: string,
   customDate: Date | null,
   statusFilter: string,
   sentimentFilter: string,
-): [ConversationType[], SentimentCounts, ConversationCounts] => {
+): [ConversationType[], SentimentCounts, ConversationCounts, TagCounts] => {
   const [conversations, setConversations] = useState<ConversationType[]>([]);
   const [sentimentCounts, setSentimentCounts] = useState<SentimentCounts>({
     positive: 0,
@@ -21,6 +23,7 @@ export const useFetchConversations = (
     marked: 0,
     not_read: 0,
   });
+  const [tagCounts, setTagCounts] = useState<TagCounts>({});
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +58,7 @@ export const useFetchConversations = (
         setConversations(data);
         setSentimentCounts(calculateSentimentCounts(data));
         setConversationCounts(calculateConversationsCounts(data));
+        setTagCounts(calculateTagCounts(data));
       } catch (error) {
         console.error('Failed to fetch conversations:', error);
       }
@@ -63,7 +67,7 @@ export const useFetchConversations = (
     fetchData();
   }, [timeFilter, customDate, statusFilter, sentimentFilter]);
 
-  return [conversations, sentimentCounts, conversationCounts];
+  return [conversations, sentimentCounts, conversationCounts, tagCounts];
 };
 
 export default useFetchConversations;

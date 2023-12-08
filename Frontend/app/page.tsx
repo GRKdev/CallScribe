@@ -21,7 +21,7 @@ const HomePage: React.FC = () => {
     toggleNavbar,
   } = useNavbarState();
 
-  const { filteredConversations, handleStatusUpdate, conversationCounts, sentimentCounts } = useConversations({
+  const { filteredConversations, handleStatusUpdate, conversationCounts, sentimentCounts, tagCounts } = useConversations({
     searchTerm,
     timeFilter,
     statusFilter,
@@ -45,6 +45,7 @@ const HomePage: React.FC = () => {
         isNavShrunk={isNavShrunk}
         onToggleNav={toggleNavbar}
         customDate={customDate}
+        tagCounts={tagCounts}
       />
       <ConversationsList conversations={filteredConversations} onStatusUpdate={handleStatusUpdate} />
     </div>

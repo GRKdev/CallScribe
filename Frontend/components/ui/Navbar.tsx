@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import Logo from '@/components/ui/Logo';
 import { NavbarProps } from '@/types/conversation';
 
+
 const Navbar: React.FC<NavbarProps> = ({
     searchTerm,
     onSearchChange,
@@ -19,10 +20,14 @@ const Navbar: React.FC<NavbarProps> = ({
     isNavShrunk,
     onToggleNav,
     conversationCounts,
+    tagCounts,
     sentimentFilter,
     onSentimentFilterChange,
 
 }) => {
+    const sortedTags = tagCounts
+        ? Object.entries(tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 15)
+        : [];
 
     return (
         <nav className={`navbar ${isNavShrunk ? 'shrunk' : ''}`}>
@@ -137,6 +142,7 @@ const Navbar: React.FC<NavbarProps> = ({
                         <SentimentChart sentimentCounts={sentimentCounts} />
                     </aside >
 
+
                     <div className="tagContainer p-2">
 
                         <ModeToggle />
@@ -149,6 +155,12 @@ const Navbar: React.FC<NavbarProps> = ({
                             <ArrowLeftFromLine />
                         </button>
                     </div>
+
+                    <ul className="tagConversationContainer p-2">
+                        {sortedTags.map(([tag, count]) => (
+                            <li key={tag} className='tagConversation'>{tag}: <span className="tag-count">{count}</span></li>
+                        ))}
+                    </ul>
 
 
                 </>

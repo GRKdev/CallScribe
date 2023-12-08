@@ -6,6 +6,7 @@ import useSearchFilter from '@/hooks/useSearchFilter';
 import { calculateConversationsCounts } from '@/utils/ConversationCount';
 import { calculateSentimentCounts } from '@/utils/sentimentCount';
 import { UseConversationsParams } from '@/types/conversation';
+import { calculateTagCounts } from '@/utils/tagCount';
 
 export const useConversations = ({ searchTerm, timeFilter, statusFilter, sentimentFilter, customDate }: UseConversationsParams) => {
     const debouncedSearchTerm = useDebounce(searchTerm, 500);
@@ -20,6 +21,7 @@ export const useConversations = ({ searchTerm, timeFilter, statusFilter, sentime
     const filteredConversations = useSearchFilter(debouncedSearchTerm, conversationsWithStatusUpdates);
     const conversationCounts = calculateConversationsCounts(filteredConversations);
     const sentimentCounts = calculateSentimentCounts(filteredConversations);
+    const tagCounts = calculateTagCounts(filteredConversations);
 
     const handleStatusUpdate = useCallback((conversationId: string, newStatus: string) => {
         setUpdatedStatus(prev => ({ ...prev, [conversationId]: newStatus }));
@@ -29,6 +31,7 @@ export const useConversations = ({ searchTerm, timeFilter, statusFilter, sentime
         filteredConversations,
         handleStatusUpdate,
         conversationCounts,
-        sentimentCounts
+        sentimentCounts,
+        tagCounts
     };
 };

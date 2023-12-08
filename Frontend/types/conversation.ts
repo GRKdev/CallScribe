@@ -29,21 +29,26 @@ export type SpeakerType = {
     not_read: number;
   };
 
+  export type TagCounts = {
+    [tag: string]: number;
+};
+
   export type NavbarProps = {
     searchTerm: string;
     onSearchChange: (value: string) => void;
     timeFilter: string;
     onTimeFilterChange: (filter: string) => void;
     onDateSelect: (date: Date | null) => void;
-    sentimentCounts: SentimentCounts;
     isNavShrunk: boolean;
     onToggleNav: () => void;
     statusFilter: string;
     onStatusFilterChange: (filter: string) => void;
-    conversationCounts: ConversationCounts;
     sentimentFilter: string;
     onSentimentFilterChange: (filter: string) => void;
     customDate: Date | null;
+    conversationCounts: ConversationCounts;
+    sentimentCounts: SentimentCounts;
+    tagCounts: TagCounts;
 };
 
 export type UseConversationsParams = {
