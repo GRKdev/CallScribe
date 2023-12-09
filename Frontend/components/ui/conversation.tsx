@@ -53,11 +53,11 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
       <div className={conversationHeaderClass} onClick={handleExpandClick}>
         <div className={styles.leftSide}>
           {currentStatus === 'Not Read' ? (
-            <Bookmark width={18} />
+            <span title='Not Read'><Bookmark width={18} /></span>
           ) : currentStatus === 'OK' ? (
-            <BookmarkCheck width={18} color='green' />
+            <span title='Reviewed OK'><BookmarkCheck width={18} color='green' /></span>
           ) : (
-            <BookmarkX width={18} color='red' />
+            <span title='Marked for review'><BookmarkX width={18} color='red' /></span>
           )}
           <span className={userNameClass}>{conversation.user}</span>
         </div>
@@ -113,11 +113,11 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
       <div className={conversationFooterClass}>
         <span className={styles.userRating}>
           {conversation.sentiment === 'Positive' ? (
-            <Smile width={22} color='green' />
+            <span title='Positive Sentiment'><Smile width={22} color='green' /></span>
           ) : conversation.sentiment === 'Neutral' ? (
-            <Meh width={22} />
+            <span title='Neutral Sentiment'><Meh width={22} /></span>
           ) : (
-            <Frown width={22} color='red' />
+            <span title='Negative Sentiment'><Frown width={22} color='red' /></span>
           )}
         </span>
         <div className={styles.tagContainer}>

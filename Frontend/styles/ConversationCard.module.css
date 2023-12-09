@@ -3,21 +3,21 @@
     border-radius: var(--radius);
     overflow: hidden;
     background: var(--card);
-    margin-bottom: 15px;
+    margin-bottom: 30px;
   }
   
   .conversationCardMarked {
     border: 1px solid #9b201e;
     border-radius: var(--radius);
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     background: var(--card);
   }
   .conversationCardOK {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     background: var(--card);
   }
   .cardHeader {
@@ -183,6 +183,7 @@
     justify-content: flex-end;
     align-items: center;
     cursor: pointer;
+    text-transform: capitalize;
   }
   .tag:hover {
     color: var(--search-border);

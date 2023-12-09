@@ -79,3 +79,10 @@ export interface UpdateSummaryProps {
   currentSummary: string;
 
 }
+
+export type TimeFilterDescription = {
+  '24h': string;
+  '7d': string;
+  '1m': string;
+  all: string;
+};

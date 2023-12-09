@@ -270,15 +270,17 @@
   padding: 2px 6px;
   font-size: 0.75rem;
   white-space: nowrap; 
+  text-transform: capitalize;
 }
 
-.tagConversationTagCount {
+.TagCount {
   background-color: var(--tag-bg); 
   border-color: var(--search-border);
   border-radius: 4px; 
   padding: 2px 6px;
   font-size: 0.75rem;
   white-space: nowrap; 
+  text-transform: capitalize;
 }
 
 
@@ -346,7 +348,7 @@
   .chartBox {
     display: none;
   }
-  .tagConversationTagCount {
+  .TagCount {
     display: none;
   }
 }

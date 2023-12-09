@@ -6,6 +6,7 @@ import { ArrowRightFromLine, ArrowLeftFromLine, Bookmark, BookmarkCheck, Bookmar
 import { Button } from "@/components/ui/button"
 import Logo from '@/components/ui/Logo';
 import { NavbarProps } from '@/types/conversation';
+import { TimeFilterDescription } from '@/types/conversation';
 
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -24,11 +25,17 @@ const Navbar: React.FC<NavbarProps> = ({
     sentimentFilter,
     onSentimentFilterChange,
 
+
 }) => {
     const sortedTags = tagCounts
         ? Object.entries(tagCounts).sort((a, b) => b[1] - a[1]).slice(0, 15)
         : [];
-
+    const timeFilterDescriptions: TimeFilterDescription = {
+        '24h': '24 Hours',
+        '7d': '7 Days',
+        '1m': '1 Month',
+        'all': 'All Time'
+    };
     return (
         <nav className={`navbar ${isNavShrunk ? 'shrunk' : ''}`}>
             {isNavShrunk ? (
@@ -55,11 +62,12 @@ const Navbar: React.FC<NavbarProps> = ({
                                 key={filter}
                                 onClick={() => onTimeFilterChange(filter)}
                                 className={timeFilter === filter ? 'activeFilter' : ''}
+                                title={timeFilterDescriptions[filter as keyof TimeFilterDescription]}
                             >
                                 {filter}
                             </button>
                         ))}
-                        <CalendarForm onDateSelect={onDateSelect} />
+                        <span title='Calendar'><CalendarForm onDateSelect={onDateSelect} /></span>
                     </section>
 
                     <section className="filterButtons justify-between px-11 pt-2">
@@ -67,6 +75,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onStatusFilterChange('all')}
                             className={statusFilter === 'all' ? 'activeFilter' : ''}
+                            title="All"
 
                         >
                             All
@@ -75,6 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onStatusFilterChange('Marked')}
                             className={statusFilter === 'Marked' ? 'activeFilter' : ''}
+                            title="Marked"
                         >
                             <BookmarkX width={18} color='red' />
 
@@ -83,6 +93,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onStatusFilterChange('OK')}
                             className={statusFilter === 'OK' ? 'activeFilter' : ''}
+                            title="OK"
                         >
                             <BookmarkCheck width={18} color='green' />
 
@@ -91,6 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onStatusFilterChange('Not Read')}
                             className={statusFilter === 'Not Read' ? 'activeFilter' : ''}
+                            title="Not Read"
                         >
                             <Bookmark width={18} />
 
@@ -102,6 +114,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onSentimentFilterChange('all')}
                             className={sentimentFilter === 'all' ? 'activeFilter' : ''}
+                            title="All"
                         >
                             All
                         </Button>
@@ -109,6 +122,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onSentimentFilterChange('Negative')}
                             className={sentimentFilter === 'Negative' ? 'activeFilter' : ''}
+                            title="Negative"
                         >
                             <Frown width={18} color='red' />
 
@@ -117,6 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onSentimentFilterChange('Positive')}
                             className={sentimentFilter === 'Positive' ? 'activeFilter' : ''}
+                            title="Positive"
                         >
                             <Smile width={18} color='green' />
 
@@ -125,6 +140,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onSentimentFilterChange('Neutral')}
                             className={sentimentFilter === 'Neutral' ? 'activeFilter' : ''}
+                            title="Neutral"
                         >
                             <Meh width={18} />
 
@@ -133,9 +149,9 @@ const Navbar: React.FC<NavbarProps> = ({
 
 
                     <ul className="hidden md:flex tagConversationContainer p-2">
-                        <li className='tagConversation'>Not Read: <span className="not-read-count">{conversationCounts.not_read}</span></li>
-                        <li className='tagConversation'>Marked: <span className="marked-count">{conversationCounts.marked}</span></li>
-                        <li className='tagConversation'>Ok: <span className="ok-count">{conversationCounts.ok}</span></li>
+                        <li className='TagCount'>Not Read: <span className="not-read-count">{conversationCounts.not_read}</span></li>
+                        <li className='TagCount'>Marked: <span className="marked-count">{conversationCounts.marked}</span></li>
+                        <li className='TagCount'>Ok: <span className="ok-count">{conversationCounts.ok}</span></li>
                     </ul>
 
                     <aside className="chartBox" style={{ height: '200px' }}>
@@ -158,7 +174,7 @@ const Navbar: React.FC<NavbarProps> = ({
 
                     <ul className="tagConversationContainer p-2">
                         {sortedTags.map(([tag, count]) => (
-                            <li key={tag} className='tagConversationTagCount'>{tag}: <span className="tag-count">{count}</span></li>
+                            <li key={tag} className='TagCount'>{tag}: <span className="font-bold">{count}</span></li>
                         ))}
                     </ul>
 
