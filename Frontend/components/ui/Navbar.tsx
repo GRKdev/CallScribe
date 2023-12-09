@@ -50,8 +50,6 @@ const Navbar: React.FC<NavbarProps> = ({
 
                         <input
                             id="searchInput"
-
-                            className="pl-2"
                             type="text"
                             value={searchTerm}
                             onChange={(e) => onSearchChange(e.target.value)}

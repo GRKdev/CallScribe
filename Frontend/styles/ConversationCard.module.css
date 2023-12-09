@@ -186,7 +186,6 @@
     justify-content: flex-end;
     align-items: center;
     cursor: pointer;
-    text-transform: capitalize;
   }
   .tag:hover {
     color: var(--search-border);
@@ -213,24 +212,24 @@
 
   }
 
-  .speakerInfoContainer {
-    display: flex;
-    justify-content: space-around; 
-    align-items: center;
-    border: 2px solid var(--border);
-    padding: 5px;
-    margin-bottom: 10px;
-    border-radius: 8px; 
-    background-color: var(--speaker1-bg);
-  }
-  .speakerInfo {
-    margin-right: 0px; 
-  }
+.speakerInfoContainer {
+  display: flex;
+  justify-content: space-around; 
+  align-items: center;
+  border: 2px solid var(--border);
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 8px; 
+  background-color: var(--speaker1-bg);
+}
+.speakerInfo {
+  margin-right: 0px; 
+}
 
-  .dialogueBox {
-    border: 2px solid var(--border); 
-    border-radius: 4px; 
-  }
+.dialogueBox {
+  border: 2px solid var(--border); 
+  border-radius: 4px; 
+}
   
 .greyText {
   color: grey;
@@ -246,4 +245,6 @@
   background-color: var(--backgroundcontent);
   border-radius: 2px;
   font-size: 0.85rem;
+  padding: 0px 4px;
+  border-radius: 8px;
 }
