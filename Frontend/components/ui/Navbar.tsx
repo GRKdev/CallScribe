@@ -46,8 +46,11 @@ const Navbar: React.FC<NavbarProps> = ({
                 </header>
 
                     <section className="searchContainer flex justify-between p-4">
+                        <label htmlFor="searchInput" className="sr-only">Search Conversations</label>
 
                         <input
+                            id="searchInput"
+
                             className="pl-2"
                             type="text"
                             value={searchTerm}
@@ -67,7 +70,7 @@ const Navbar: React.FC<NavbarProps> = ({
                                 {filter}
                             </button>
                         ))}
-                        <span title='Calendar'><CalendarForm onDateSelect={onDateSelect} /></span>
+                        <CalendarForm onDateSelect={onDateSelect} />
                     </section>
 
                     <section className="filterButtons justify-between px-11 pt-2">
@@ -75,7 +78,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onStatusFilterChange('all')}
                             className={statusFilter === 'all' ? 'activeFilter' : ''}
-                            title="All"
+                            title="All Conversations"
 
                         >
                             All
@@ -114,7 +117,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             variant="secondary"
                             onClick={() => onSentimentFilterChange('all')}
                             className={sentimentFilter === 'all' ? 'activeFilter' : ''}
-                            title="All"
+                            title="All Sentiments"
                         >
                             All
                         </Button>
@@ -167,6 +170,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             onClick={onToggleNav}
                             style={{ float: 'right' }}
                             className="toggle-nav-btn pr-2"
+                            title="Change Theme"
                         >
                             <ArrowLeftFromLine />
                         </button>

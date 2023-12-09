@@ -73,6 +73,7 @@ export function CalendarForm({ onDateSelect }: CalendarFormProps) {
                                             date > new Date() || date < new Date("1900-01-01")
                                         }
                                         initialFocus
+                                        title="Select a date"
                                     />
                                 </PopoverContent>
                             </Popover>
