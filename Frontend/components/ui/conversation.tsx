@@ -85,7 +85,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
 
               ) : (
                 <div>
-                  {conversation.summary}
+                  <span onClick={handleExpandClick} className={`${styles.summaryClickable} ${summaryClass}`}>{conversation.summary}</span>
                   <a className='flex justify-end ' title="Edit Summary" onClick={handleExpandClickEdit}><Pencil className="icon_edit" /></a>
                 </div>
               )}

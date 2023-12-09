@@ -4,6 +4,7 @@
     overflow: hidden;
     background: var(--card);
     margin-bottom: 30px;
+    box-shadow: 2px 2px 4px var(--border);
   }
   
   .conversationCardMarked {
@@ -12,6 +13,7 @@
     overflow: hidden;
     margin-bottom: 30px;
     background: var(--card);
+    box-shadow: 3px 4px 10px #9b201e;
   }
   .conversationCardOK {
     border: 1px solid var(--border);
@@ -19,6 +21,8 @@
     overflow: hidden;
     margin-bottom: 30px;
     background: var(--card);
+    box-shadow: 1px 1px 4px rgb(84, 150, 84);
+
   }
   .cardHeader {
     display: flex;
@@ -105,9 +109,8 @@
 
   .userNameOk {
     margin-left: 4px; 
-    color: gray;
+    color: var(--user-name-ok);
     font-weight: bold;
-    font-style: italic;
     cursor: pointer;
 
   }

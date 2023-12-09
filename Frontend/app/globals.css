@@ -43,7 +43,8 @@
     --conversation-card-widht: 250px;
     --icon-fill-light: #000000;
     --icon-fill-dark: #ffffff;
-    --icon-fill: var(--icon-stroke-light)
+    --icon-fill: var(--icon-stroke-light);
+    --user-name-ok: #5e5e5e;
   }
 
   .dark {
@@ -84,9 +85,8 @@
     --navbar-width: 285px;
     --navbar-shrunk-width: 24px;
     --conversation-card-widht: 250px;
-
     --icon-fill: var(--icon-fill-dark);
-
+    --user-name-ok: #c4c4c4;
   }
 }
 @layer base {
@@ -375,4 +375,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .add_tag {
+    color: var(--icon-fill);
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+  }
+  .add_tag:hover {
+    color:rgb(153, 15, 15);
   }
