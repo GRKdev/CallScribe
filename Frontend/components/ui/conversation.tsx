@@ -132,7 +132,7 @@ const ConversationCard: React.FC<ConversationCardProps> = ({ conversation, onSta
           aria-label="Toggle Conversation Expansion"
           className={styles.expandButton}
         >
-          {isExpanded ? <ArrowUpFromLine width={18} /> : <ArrowDownFromLine width={18} />}
+          {isExpanded ? <ArrowUpFromLine width={18} className='hover_icon' /> : <ArrowDownFromLine width={18} className='hover_icon' />}
         </button>
       </div>
     </div>

@@ -20,7 +20,7 @@ export function ModeToggle() {
         if (!mounted) {
             return <Sun className="h-6 w-6" />;
         }
-        return theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />;
+        return theme === "dark" ? <Sun className="h-6 w-6 hover_icon" /> : <Moon className="h-6 w-6 hover_icon" />;
     };
 
     return (

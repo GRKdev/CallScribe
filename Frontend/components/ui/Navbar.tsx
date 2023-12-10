@@ -170,7 +170,7 @@ const Navbar: React.FC<NavbarProps> = ({
                             className="toggle-nav-btn pr-2"
                             title="Change Theme"
                         >
-                            <ArrowLeftFromLine />
+                            <ArrowLeftFromLine className='hover_icon' />
                         </button>
                     </div>
 

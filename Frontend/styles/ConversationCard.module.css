@@ -188,7 +188,7 @@
     cursor: pointer;
   }
   .tag:hover {
-    color: var(--search-border);
+    color: rgb(153, 15, 15);
   }
   .bold {
     font-weight: bold;

@@ -383,6 +383,15 @@
     width: 15px;
     height: 15px;
   }
+
   .add_tag:hover {
+    color:rgb(153, 15, 15);
+  }
+
+  .hover_icon {
+    cursor: pointer;
+  }
+
+  .hover_icon:hover {
     color:rgb(153, 15, 15);
   }
