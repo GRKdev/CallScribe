@@ -39,7 +39,7 @@ const Navbar: React.FC<NavbarProps> = ({
     return (
         <nav className={`navbar ${isNavShrunk ? 'shrunk' : ''}`}>
             {isNavShrunk ? (
-                <button style={{ justifyContent: 'center' }} onClick={onToggleNav}><ArrowRightFromLine /></button>
+                <button style={{ justifyContent: 'center' }} onClick={onToggleNav}><ArrowRightFromLine className='hover_icon' /></button>
             ) : (
                 <>  <header className="flex justify-center items-center align-middle p-1 gap-2 pt-4">
                     <Logo />
