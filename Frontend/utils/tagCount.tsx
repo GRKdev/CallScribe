@@ -5,10 +5,11 @@ export const calculateTagCounts = (conversations: ConversationType[]): TagCounts
 
     conversations.forEach((conversation) => {
         conversation.tags.forEach((tag) => {
-            if (counts[tag]) {
-                counts[tag]++;
+            const lowerCaseTag = tag.toLowerCase();
+            if (counts[lowerCaseTag]) {
+                counts[lowerCaseTag]++;
             } else {
-                counts[tag] = 1;
+                counts[lowerCaseTag] = 1;
             }
         });
     });
