@@ -176,7 +176,7 @@ def process_audio_file(file_path):
                 data = json.load(json_file)
 
             db.callcenter.insert_one(data)
-            print(f"- Data inserted into MongoDB collection 'callcenter'")
+            print("- Data inserted into MongoDB collection 'callcenter'")
             mark_as_processed(file_path)
         else:
             print("- Request failed for file:", file_name)
